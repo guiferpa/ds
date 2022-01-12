@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+// import styled, { css } from 'styled-components';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { }
 
-const buttonBaseStyle = (props: ButtonProps) => css``
+// const buttonBaseStyle = (props: ButtonProps) => css``
 
 const Button: React.FunctionComponent<ButtonProps> = (props: ButtonProps) => {
   return (
@@ -11,8 +11,12 @@ const Button: React.FunctionComponent<ButtonProps> = (props: ButtonProps) => {
   );
 }
 
+/*
 const ButtonStyled = styled(Button)<ButtonProps>(
   buttonBaseStyle
 );
 
 export default ButtonStyled;
+*/
+
+export default Button;
