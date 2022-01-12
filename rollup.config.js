@@ -1,7 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import ts from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts'
+import dts from 'rollup-plugin-dts';
 
 const pkg = require('./package.json');
 
@@ -24,12 +24,16 @@ const config = [
       resolve(),
       commonjs(),
       ts({ tsconfig: './tsconfig.json' })
-    ]
+    ],
+    external: ["react", "react-dom", "styled-components"],
+    globals: { 'styled-components': 'styled' }
   },
   {
     input: 'dist/esm/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()]
+    plugins: [dts()],
+    external: ["react", "react-dom", "styled-components"],
+    globals: { 'styled-components': 'styled' }
   }
 ];
 
