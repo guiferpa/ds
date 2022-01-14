@@ -54,7 +54,7 @@ export default {
   },
   typography: {
     family: {
-      inter: '\'Inter\', sans-serif'
+      body: '\'Inter\', sans-serif'
     },
     weight: {
       light: 300,

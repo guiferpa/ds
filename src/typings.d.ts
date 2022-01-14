@@ -36,8 +36,12 @@ declare module 'styled-components' {
         }
       },
       typography: {
+        family: {
+          body: string;
+        }
         weight: {
           medium: number;
+          bold: number;
         }
       }
     },
@@ -55,16 +59,21 @@ declare module 'styled-components' {
       size: {
         xs: string;
         sm: string;
+        md: string;
+        lg: string;
       },
       inset: {
         xxs: string;
         xs: string;
         sm: string;
+        md: string;
+        lg: string;
       }
     },
     typography: {
       size: {
         md: string;
+        lg: string;
       }
     },
     shadow: {

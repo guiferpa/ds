@@ -5,27 +5,32 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   label?: string;
   secondary?: boolean;
   tertiary?: boolean;
+  fluid?: boolean;
 }
 
-const buttonResetStyle = (props: ButtonProps) => css`
+const buttonResetStyle = () => css`
   border: none;
   margin: 0;
+  text-decoration: none;
+  display: inline-block;
 `
 
-const buttonBaseStyle = (props: ButtonProps) => css`
+const buttonBaseStyle = () => css`
   border-radius: ${({ theme }) => theme.border.radius.sm};
   padding: ${({ theme }) => theme.spacing.inset.sm};
   min-width: 160px;
   font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
   font-size: ${({ theme }) => theme.typography.size.md};
-  border: solid ${({ theme }) => theme.border.size.md} transparent;
+  border: solid ${({ theme }) => theme.border.size.sm} transparent;
+  box-sizing: border-box;
+  text-align: center;
 
   &:hover {
     cursor: pointer;
   }
 `
 
-const buttonPrimaryStyle = (props: ButtonProps) => css`
+const buttonPrimaryStyle = () => css`
   color: ${({ theme }) => theme.brand.color.light.pure};
   background-color: ${({ theme }) => theme.brand.color.primary.pure};
   border-radius: ${({ theme }) => theme.border.radius.sm};
@@ -38,7 +43,7 @@ const buttonPrimaryStyle = (props: ButtonProps) => css`
 const buttonSecondaryStyle = (props: ButtonProps) => props.secondary && css`
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   color: ${({ theme }) => theme.brand.color.primary.pure};
-  border: solid ${({ theme }) => `${theme.border.size.md} ${theme.brand.color.primary.pure}`};
+  border: solid ${({ theme }) => `${theme.border.size.sm} ${theme.brand.color.primary.pure}`};
 
   &:hover {
     color: ${({ theme }) => theme.brand.color.light.pure};
@@ -55,18 +60,19 @@ const buttonTertiaryStyle = (props: ButtonProps) => props.tertiary && css`
   }
 `
 
-const StyledButton = styled.button(
+const buttonFluidStyle = (props: ButtonProps) => props.fluid && css`
+  width: 100%;
+`
+
+const StyledButton = styled.button<ButtonProps>(
   buttonResetStyle,
   buttonBaseStyle,
   buttonPrimaryStyle,
   buttonSecondaryStyle,
-  buttonTertiaryStyle
+  buttonTertiaryStyle,
+  buttonFluidStyle
 );
 
-const Button: React.FunctionComponent<ButtonProps> = (props: ButtonProps) => {
-  return (
-    <StyledButton {...props} >{props.label}</StyledButton>
-  );
-}
+const Button = StyledButton;
 
 export default Button;

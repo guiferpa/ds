@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  fluid?: boolean;
+}
 
 const inputResetStyle = (props: InputProps) => css`
   border: none;
@@ -16,6 +18,8 @@ const inputBaseStyle = (props: InputProps) => css`
   border-radius: ${({ theme }) => theme.border.radius.sm};
   padding: ${({ theme }) => theme.spacing.inset.sm};
   font-size: ${({ theme }) => theme.typography.size.md};
+  min-width: 200px;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -23,9 +27,14 @@ const inputBaseStyle = (props: InputProps) => css`
   }
 `
 
+const inputFluidStyle = (props: InputProps) => props.fluid && css`
+  width: 100%;
+`
+
 const StyledInput = styled.input(
   inputResetStyle,
-  inputBaseStyle
+  inputBaseStyle,
+  inputFluidStyle
 );
 
 const Input: React.FunctionComponent<InputProps> = (props: InputProps) => {

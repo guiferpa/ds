@@ -47,12 +47,12 @@ const Breadcrumb: React.FunctionComponent<BreadcrumbProps> = (props) => {
   return (
     <StyledBreadcrumb>
       {props.crumbs.map((crumb, idx) => (
-        <>
+        <React.Fragment key={idx}>
           <StyledBreadcrumbItem>
             <Link href={crumb.path}> {crumb.name} </Link>
           </StyledBreadcrumbItem>
           {(idx < (props.crumbs.length - 1)) && <StyledBreadcrumbMarker size={"10px"} />}
-        </>
+        </React.Fragment>
       ))}
     </StyledBreadcrumb>
   );

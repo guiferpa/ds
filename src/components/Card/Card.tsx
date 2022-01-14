@@ -16,7 +16,7 @@ const cardBaseStyle = (props: CardProps) => css`
   box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
 `
 
-const StyledCard = styled.div(
+export const StyledCard = styled.div(
   cardResetStyle,
   cardBaseStyle
 );

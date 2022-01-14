@@ -13,3 +13,6 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
 export const Simple = Template.bind({});
 Simple.args = {};
+
+export const Fluid = Template.bind({});
+Fluid.args = {};
