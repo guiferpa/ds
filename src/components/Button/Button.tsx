@@ -1,11 +1,13 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+import { CgSpinnerAlt } from 'react-icons/cg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label?: string;
+  label: string;
   secondary?: boolean;
   tertiary?: boolean;
   fluid?: boolean;
+  isLoading?: boolean;
 }
 
 const buttonResetStyle = () => css`
@@ -64,15 +66,56 @@ const buttonFluidStyle = (props: ButtonProps) => props.fluid && css`
   width: 100%;
 `
 
-const StyledButton = styled.button<ButtonProps>(
+const buttonDisabledStyle = (props: ButtonProps) => props.disabled && css`
+  pointer-events: none;
+  color: ${({ theme }) => theme.brand.color.light.pure};
+  background-color: ${({ theme }) => theme.brand.color.light.dark};
+  border-color: ${({ theme }) => theme.brand.color.light.dark};
+`
+
+const buttonIsLoadingStyle = (props: ButtonProps) => props.isLoading && css`
+  pointer-events: none;
+  opacity: ${({ theme }) => theme.opacity.intensity.four};
+`
+
+const spinnerAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const CgSpinnerAltStyled = styled(CgSpinnerAlt)`
+  display: inline-block;
+  animation: ${spinnerAnimation} 1s linear infinite;
+`
+
+const Button: React.FunctionComponent<ButtonProps> = (props) => {
+  const { disabled, isLoading, label } = props;
+
+  return (
+    <button 
+      {...props}
+      disabled={disabled || isLoading}
+    >
+      {!isLoading && label}
+      {isLoading && <CgSpinnerAltStyled />}
+    </button>
+  );
+};
+
+const StyledButton = styled(Button)<ButtonProps>(
   buttonResetStyle,
   buttonBaseStyle,
   buttonPrimaryStyle,
   buttonSecondaryStyle,
   buttonTertiaryStyle,
-  buttonFluidStyle
+  buttonFluidStyle,
+  buttonDisabledStyle,
+  buttonIsLoadingStyle
 );
 
-const Button = StyledButton;
 
-export default Button;
+export default StyledButton;

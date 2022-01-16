@@ -8,7 +8,12 @@ export default {
   title: 'Components/Button',
   component: Button,
   args: {
-    label: 'Button'
+    label: 'Button',
+    secondary: false,
+    tertiary: false,
+    fluid: false,
+    isLoading: false,
+    disabled: false
   }
 } as ComponentMeta<typeof Button>;
 
@@ -30,4 +35,14 @@ Tertiary.args = {
 export const Fluid = Template.bind({});
 Fluid.args = {
   fluid: true
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  isLoading: true
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true
 };

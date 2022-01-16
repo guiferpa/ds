@@ -80,6 +80,11 @@ declare module 'styled-components' {
       intensity: {
         one: string;
       }
+    },
+    opacity: {
+      intensity: {
+        four: number;
+      }
     }
   }
 }
