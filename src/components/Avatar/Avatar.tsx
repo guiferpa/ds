@@ -160,6 +160,8 @@ const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
 
   React.useEffect(() => {
     if (image) {
+      props.onChangePhoto && props.onChangePhoto(image);
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result as string);
