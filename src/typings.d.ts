@@ -72,6 +72,8 @@ declare module 'styled-components' {
     },
     typography: {
       size: {
+        xs: string;
+        sm: string;
         md: string;
         lg: string;
       }
