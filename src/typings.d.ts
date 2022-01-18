@@ -35,6 +35,20 @@ declare module 'styled-components' {
           light: string;
           medium: string;
           dark: string;
+        },
+        feedback: {
+          warning: {
+            pure: string;
+            dark: string;
+          },
+          failure: {
+            pure: string;
+            dark: string;
+          },
+          success: {
+            pure: string;
+            dark: string;
+          }
         }
       },
       typography: {
