@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import { CgSpinnerAlt } from 'react-icons/cg';
+import { SpinnerIos } from '@styled-icons/fluentui-system-filled';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
@@ -21,7 +21,7 @@ const buttonBaseStyle = () => css`
   border-radius: ${({ theme }) => theme.border.radius.sm};
   padding: ${({ theme }) => theme.spacing.inset.sm};
   min-width: 160px;
-  font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
+  font-weight: ${({ theme }) => theme.brand.typography.weight.bold};
   font-size: ${({ theme }) => theme.typography.size.md};
   border: solid ${({ theme }) => theme.border.size.sm} transparent;
   box-sizing: border-box;
@@ -87,7 +87,7 @@ const spinnerAnimation = keyframes`
   }
 `
 
-const CgSpinnerAltStyled = styled(CgSpinnerAlt)`
+const CgSpinnerAltStyled = styled(SpinnerIos)`
   display: inline-block;
   animation: ${spinnerAnimation} 1s linear infinite;
 `

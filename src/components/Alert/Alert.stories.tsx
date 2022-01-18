@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Alert from './Alert';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/Alert',
   component: Alert,
@@ -15,6 +14,20 @@ export default {
 
 const Template: ComponentStory<typeof Alert> = (args) => <Alert {...args} />;
 
-export const Info = Template.bind({});
-Info.args = {};
+export const Default = Template.bind({});
+Default.args = {};
 
+export const Danger = Template.bind({});
+Danger.args = {
+  failure: true
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  warning: true
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  success: true
+};

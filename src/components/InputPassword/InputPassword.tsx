@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
+import { Eye, EyeClose } from '@styled-icons/remix-fill';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   fluid?: boolean;
@@ -76,6 +76,14 @@ const StyledButtonToggleVisible = styled.div(
   buttonToggleVisibleBaseStyle
 );
 
+const buttonToggleVisibleIconStyle = () => css`
+  color: ${({ theme }) => theme.brand.color.primary.dark};
+  width: ${({ theme }) => theme.typography.size.md};
+`
+
+const StyledEyeOpened = styled(Eye)(buttonToggleVisibleIconStyle);
+const StyledEyeClosed = styled(EyeClose)(buttonToggleVisibleIconStyle);
+
 const Input: React.FunctionComponent<InputProps> = (props: InputProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -84,9 +92,9 @@ const Input: React.FunctionComponent<InputProps> = (props: InputProps) => {
       <StyledInputPassword placeholder={props.placeholder} type={isOpen ? "text" : "password"} />
       <StyledButtonToggleVisible onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? (
-          <FaRegEyeSlash />
+          <StyledEyeClosed />
         ) : (
-          <FaRegEye />
+          <StyledEyeOpened />
         )}
       </StyledButtonToggleVisible>
     </StyledInputPasswordContainer>

@@ -19,10 +19,19 @@ const formLoginBaseStyle = () => css`
   align-items: center;
   padding: ${({ theme }) => theme.spacing.inset.md};
   border-radius: ${({ theme }) => theme.border.radius.sm};
-  width: 380px;
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
   box-sizing: border-box;
+  width: 400px;
+
+  @media(max-width: 400px) {
+    position: relative;
+    transform: translate(0, 0);
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 90%;
+  }
 `
 
 const StyledFormLogin = styled.form(
@@ -42,6 +51,7 @@ const inputGroupBaseStyle = () => css`
 const StyledInputGroup = styled.div(inputGroupBaseStyle);
 
 const actionGroupBaseStyle = () => css`
+  width: 100%;
   margin-top: ${({ theme }) => theme.spacing.size.md};
 
   button:first-child {

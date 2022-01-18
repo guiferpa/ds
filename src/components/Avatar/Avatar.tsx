@@ -1,9 +1,8 @@
 import React, { ChangeEventHandler } from 'react';
 import styled, { css } from 'styled-components';
-import { IoMdPerson } from 'react-icons/io';
-import { MdCameraAlt } from 'react-icons/md';
+import { Person, CameraAlt } from '@styled-icons/material';
 
-const StyledPersonIcon = styled(IoMdPerson)`
+const StyledPersonIcon = styled(Person)`
   color: ${({ theme }) => theme.brand.color.heavy.dark};
   width: 1200px;
 `
@@ -114,7 +113,7 @@ const StyledAvatarMaskEditableTextContainer = styled.div`
   align-items: center;
 `
 
-const StyledAvatarMaskEditableIcon = styled(MdCameraAlt)``
+const StyledAvatarMaskEditableIcon = styled(CameraAlt)``
 
 const StyledAvatarMaskEditableText = styled.span`
   position: relative;

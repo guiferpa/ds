@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { MdOutlineArrowForwardIos } from 'react-icons/md';
+import { ArrowIosForward } from '@styled-icons/evaicons-solid';
 import Link from '../Link';
 
 export interface Crumb {
@@ -35,7 +35,7 @@ const StyledBreadcrumbItem = styled.li(
 const breadcrumbMarkerResetStyle = () => css``
 
 
-const StyledBreadcrumbMarker = styled(MdOutlineArrowForwardIos)(
+const StyledBreadcrumbMarker = styled(ArrowIosForward)(
   breadcrumbMarkerResetStyle
 );
 
