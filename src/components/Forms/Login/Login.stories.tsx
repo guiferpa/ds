@@ -13,5 +13,6 @@ const Template: ComponentStory<typeof FormLogin> = (args) => <FormLogin {...args
 
 export const Simple = Template.bind({});
 Simple.args = {
-  forgetPasswordPath: '/#'
+  forgotPasswordPath: '/#',
+  signUpPath: '/#'
 };

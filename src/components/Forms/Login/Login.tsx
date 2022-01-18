@@ -1,9 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Button, Heading, Input } from '../..';
+import { Button, Heading, Input, Link } from '../..';
+import InputPassword from '../../InputPassword';
 
 export interface FormLoginProps extends React.FormHTMLAttributes<HTMLFormElement> {
-  forgetPasswordPath: string;
+  forgotPasswordPath: string;
+  signUpPath: string;
 }
 
 const formLoginResetStyle = () => css`
@@ -29,9 +31,10 @@ const StyledFormLogin = styled.form(
 );
 
 const inputGroupBaseStyle = () => css`
+  width: 100%;
   margin-top: ${({ theme }) => theme.spacing.size.lg};
 
-  input:first-child {
+  & > input:first-child {
     margin-bottom: ${({ theme }) => theme.spacing.size.sm};
   }
 `
@@ -48,18 +51,47 @@ const actionGroupBaseStyle = () => css`
 
 const StyledActionGroup = styled.div(actionGroupBaseStyle);
 
+const signUpResetStyle = () => css``
+
+const signUpBaseStyle = () => css`
+  display: flex;
+  gap: 10px;
+  margin-top: ${({ theme }) => theme.spacing.size.lg};
+  margin-bottom: ${({ theme }) => theme.spacing.size.md};
+`
+
+const StyledSignUp = styled.div(
+  signUpResetStyle,
+  signUpBaseStyle
+);
+
+const signUpLabelResetStyle = () => css``
+
+const signUpLabelBaseStyle = () => css`
+  color: ${({ theme }) => theme.brand.color.heavy.light};
+`
+
+const StyledSignUpLabel = styled.span(
+  signUpLabelResetStyle,
+  signUpLabelBaseStyle
+);
+
 const FormLogin: React.FunctionComponent<FormLoginProps> = (props) => {
   return (
     <StyledFormLogin {...props}>
       <Heading> Faça seu Log in </Heading>
       <StyledInputGroup>
         <Input fluid placeholder="Digite seu CPF" />
-        <Input fluid placeholder="Digite sua senha" />
+        <InputPassword fluid placeholder="Digite sua senha" />
       </StyledInputGroup>
       <StyledActionGroup>
-        <Button type="submit" fluid>Acessar</Button>
-        <Button type="submit" fluid tertiary as={"a"} href={props.forgetPasswordPath}>Esqueci minha senha</Button>
+        <Button type="submit" fluid label="Acessar" />
+        <Button type="submit" fluid tertiary as={"a"} href={props.forgotPasswordPath}>Esqueci minha senha</Button>
       </StyledActionGroup>
+      <StyledSignUp>
+        <StyledSignUpLabel>Não tem uma conta?</StyledSignUpLabel>
+        <Link href={props.signUpPath}>Cadastre-se</Link>
+      </StyledSignUp>
     </StyledFormLogin>
   );
 }

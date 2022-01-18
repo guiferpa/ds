@@ -14,7 +14,6 @@ const linkResetStyle = () => css`
 `
 
 const linkBaseStyle = () => css`
-  background-color: ${({ theme }) => theme.brand.color.light.pure};
   box-sizing: border-box;
   font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
   font-size: ${({ theme }) => theme.typography.size.md};

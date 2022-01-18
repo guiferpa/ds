@@ -32,6 +32,8 @@ declare module 'styled-components' {
         },
         heavy: {
           pure: string;
+          light: string;
+          medium: string;
           dark: string;
         }
       },
@@ -40,6 +42,7 @@ declare module 'styled-components' {
           body: string;
         }
         weight: {
+          light: number;
           medium: number;
           bold: number;
         }
@@ -47,6 +50,7 @@ declare module 'styled-components' {
     },
     border: {
       radius: {
+        xs: string;
         sm: string;
         circle: string;
       },

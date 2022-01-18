@@ -57,7 +57,9 @@ const avatarResetStyle = () => css`
   margin: 0;
 `
 
-const avatarBaseStyle = () => css``
+const avatarBaseStyle = () => css`
+  font-weight: ${({ theme }) => theme.brand.typography.weight.light};
+`
 
 const avatarSmallStyle = () => css`
   width: 40px;

@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { CgSpinnerAlt } from 'react-icons/cg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
+  label?: string;
   secondary?: boolean;
   tertiary?: boolean;
   fluid?: boolean;
