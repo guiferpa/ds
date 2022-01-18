@@ -111,7 +111,9 @@ const Alert: React.FunctionComponent<AlertProps> = (props) => {
           {props.message}
         </StyledAlertMessage>
       </StyledAlertContentWrapper>
-      <StyledAlertCloseButton />
+      <StyledAlertCloseButton onClick={() => {
+        props.onClose && props.onClose();
+      }} />
     </StyledAlert>
   );
 }
