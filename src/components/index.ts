@@ -5,3 +5,5 @@ export { default as Avatar } from './Avatar';
 export { default as Link } from './Link';
 export { default as Breadcrumb } from './Breadcrumb';
 export { default as Heading } from './Heading';
+export { default as Select } from './Select';
+export { default as InputPassword } from './InputPassword';

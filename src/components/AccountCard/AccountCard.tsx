@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Input } from '..';
+
 import Avatar from '../Avatar';
+import Input from '../Input';
+import Select from '../Select';
 
 export interface AccountCardProps {}
 
@@ -54,6 +56,11 @@ const StyledAccountCardContent = styled.div`
   }
 `
 
+const options = [
+  { label: "Sim", value: "true", selected: true },
+  { label: "Não", value: "false", selected: false }
+]
+
 const AccountCard: React.FunctionComponent<AccountCardProps> = (props) => {
   return (
     <StyledAccountCard {...props}>
@@ -67,8 +74,8 @@ const AccountCard: React.FunctionComponent<AccountCardProps> = (props) => {
         <Input fluid label="Telefone celular" />
         <Input fluid label="Gênero"/>
         <Input fluid label="Nível de escolaridade" />
-        <Input fluid label="Reside em comunidade?" />
-        <Input fluid label="É refugiado?" />
+        <Select fluid label="Reside em comunidade?" options={options} />
+        <Select fluid label="É refugiado?" options={options} />
       </StyledAccountCardContent>
     </StyledAccountCard>
   );
