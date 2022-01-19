@@ -48,6 +48,7 @@ export interface AvatarProps {
   large?: boolean;
   xlarge?: boolean;
   isEditable?: boolean;
+  hasNotification?: boolean;
   onChangePhoto?: (file: File) => void;
 }
 
@@ -57,6 +58,7 @@ const avatarResetStyle = () => css`
 `
 
 const avatarBaseStyle = () => css`
+  position: relative;
   font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
 `
 
@@ -83,18 +85,13 @@ const avatarExtraLargeStyle = (props: AvatarProps) => props.xlarge && css`
   font-size: ${({ theme }) => theme.typography.size.md};
 `
 
-const avatarEditableStyle = (props: AvatarProps) => props.isEditable && css`
-  position: relative;
-`
-
 const StyledContainerAvatar = styled.div(
   avatarResetStyle,
   avatarBaseStyle,
   avatarSmallStyle,
   avatarMediumStyle,
   avatarLargeStyle,
-  avatarExtraLargeStyle,
-  avatarEditableStyle
+  avatarExtraLargeStyle
 );
 
 const StyledAvatarMaskEditableTextContainer = styled.div`
@@ -119,6 +116,24 @@ const StyledAvatarMaskEditableText = styled.span`
   position: relative;
   display: inline-block;
 `
+
+const avatarNotificationMarkerResetStyle = () => css``
+
+const avatarNotificationMarkerBaseStyle = () => css`
+  width: 18%;
+  height: 18%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-25%, 50%);
+  border-radius: ${({ theme }) => theme.border.radius.circle};
+  background-color: ${({ theme }) => theme.brand.color.feedback.failure.pure};
+`
+
+const StyledAvatarNotificationMarker = styled.span(
+  avatarNotificationMarkerResetStyle,
+  avatarNotificationMarkerBaseStyle
+);
 
 export interface AvatarMaskProps {
   isEditable?: boolean;
@@ -203,6 +218,7 @@ const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
           setImage(file);
         }}
       />
+      {props.hasNotification && <StyledAvatarNotificationMarker />}
     </StyledContainerAvatar>
   );
 }

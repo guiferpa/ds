@@ -68,3 +68,10 @@ Editable.args = {
   large: true,
   isEditable: true
 };
+
+export const Notification = Template.bind({});
+Notification.args = {
+  src: imageURL,
+  medium: true,
+  hasNotification: true
+};
