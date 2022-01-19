@@ -57,7 +57,7 @@ const avatarResetStyle = () => css`
 `
 
 const avatarBaseStyle = () => css`
-  font-weight: ${({ theme }) => theme.brand.typography.weight.light};
+  font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
 `
 
 const avatarSmallStyle = () => css`
@@ -72,14 +72,14 @@ const avatarMediumStyle = (props: AvatarProps) => props.medium && css`
 `
 
 const avatarLargeStyle = (props: AvatarProps) => props.large && css`
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   font-size: ${({ theme }) => theme.typography.size.sm};
 `
 
 const avatarExtraLargeStyle = (props: AvatarProps) => props.xlarge && css`
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   font-size: ${({ theme }) => theme.typography.size.md};
 `
 

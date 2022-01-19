@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   fluid?: boolean;
+  label?: string;
 }
 
 const inputResetStyle = (props: InputProps) => css`
@@ -37,9 +38,21 @@ const StyledInput = styled.input(
   inputFluidStyle
 );
 
+const StyledInputLabel = styled.label`
+  margin-bottom: ${({ theme }) => theme.spacing.size.xs};
+`
+
+const StyledInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const Input: React.FunctionComponent<InputProps> = (props: InputProps) => {
   return (
-    <StyledInput {...props} />
+    <StyledInputWrapper>
+      {props.label && <StyledInputLabel> {props.label} </StyledInputLabel>}
+      <StyledInput {...props} />
+    </StyledInputWrapper>
   );
 }
 
