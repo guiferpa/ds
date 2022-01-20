@@ -1,23 +1,25 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
-
-import { Folder } from '@styled-icons/fa-solid';
-import { LabFlask } from '@styled-icons/entypo';
-import { Person } from '@styled-icons/material';
-
+import styled, { css } from 'styled-components';
 import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
+
+export interface Item {
+  icon: React.ComponentType<any>;
+  name: string;
+  href?: string;
+}
 
 export interface SidebarProps {
   open?: boolean;
+  items: Item[];
 }
 
 const sidebarResetStyle = () => css``
 
-const sidebarBaseStyle = (props: SidebarProps) => css`
+const sidebarBaseStyle = (props: { isOpened: boolean; }) => css`
   position: fixed;
   top: 0;
   left: 0;
-  width: ${ props.open ? "290px" : "90px" };
+  width: ${ props.isOpened ? "290px" : "90px" };
   height: 100%;
   transition: width 1s;
   background-color: ${({ theme }) => theme.brand.color.primary.pure};
@@ -64,22 +66,13 @@ const StyledSidebarNavigatorItemLink = styled.a`
   line-height: 50px;
   padding: ${({ theme }) => `${theme.spacing.inset.xxs};`}
   font-size: ${({ theme }) => theme.typography.size.md};
+  transition: color .8s;
 
   &:hover {
     color: ${({ theme }) => theme.brand.color.secondary.pure};
     background-color: ${({ theme }) => theme.brand.color.primary.dark};
   }
 `
-
-const sidebarNavigatorItemIconStyle = () => css`
-  width: 25px;
-`
-
-const StyledFolderIcon = styled(Folder)(sidebarNavigatorItemIconStyle);
-
-const StyledUserProfileIcon = styled(Person)(sidebarNavigatorItemIconStyle);
-
-const StyledExperienceIcon = styled(LabFlask)(sidebarNavigatorItemIconStyle);
 
 const StyledNavigatorItemIconWrapper = styled.div`
   text-align: center;
@@ -111,10 +104,10 @@ const StyledIconUnfoldMenu = styled(MenuUnfold)(iconToggleMenuStyle);
 const StyledSidebarNavigatorItemLinkName = styled.span``
 
 const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
-  const [isOpened, setIsOpened] = React.useState<boolean | undefined>(props.open);
+  const [isOpened, setIsOpened] = React.useState<boolean>(props.open || true);
 
   return (
-    <StyledSidebar open={isOpened}>
+    <StyledSidebar isOpened={isOpened}>
       <StyledSidebarHeader>
         {isOpened && <div>Cieds Core</div>}
         <StyledIconToggleMenu onClick={() => setIsOpened(!isOpened)}>
@@ -126,14 +119,10 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
         </StyledIconToggleMenu>
       </StyledSidebarHeader>
       <StyledSidebarNavigator>
-        {[
-          { icon: StyledFolderIcon, name: "Projetos" },
-          { icon: StyledUserProfileIcon, name: "Perfil de usuário" },
-          { icon: StyledExperienceIcon, name: "Experiências" }
-        ].map(({ icon: Icon, name }) => {
+        {props.items.map(({ icon: Icon, name, href }) => {
           return (
             <StyledSidebarNavigatorItem>
-              <StyledSidebarNavigatorItemLink href='/#'>
+              <StyledSidebarNavigatorItemLink href={href}>
                 <StyledNavigatorItemIconWrapper>
                   <Icon /> 
                 </StyledNavigatorItemIconWrapper>

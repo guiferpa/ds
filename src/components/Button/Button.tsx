@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { SpinnerIos } from '@styled-icons/fluentui-system-filled';
+import { SpinnerIcon } from '../Icon'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
@@ -78,20 +79,6 @@ const buttonIsLoadingStyle = (props: ButtonProps) => props.isLoading && css`
   opacity: ${({ theme }) => theme.opacity.intensity.four};
 `
 
-const spinnerAnimation = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
-
-const CgSpinnerAltStyled = styled(SpinnerIos)`
-  display: inline-block;
-  animation: ${spinnerAnimation} 1s linear infinite;
-`
-
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
   const { disabled, isLoading, label } = props;
 
@@ -101,7 +88,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
       disabled={disabled || isLoading}
     >
       {!isLoading && label}
-      {isLoading && <CgSpinnerAltStyled />}
+      {isLoading && <SpinnerIcon loop />}
     </button>
   );
 };
