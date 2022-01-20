@@ -43,7 +43,7 @@ const inputGroupBaseStyle = () => css`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing.size.lg};
 
-  & > input:first-child {
+  & > div:first-child {
     margin-bottom: ${({ theme }) => theme.spacing.size.sm};
   }
 `
