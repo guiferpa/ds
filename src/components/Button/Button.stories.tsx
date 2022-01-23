@@ -8,12 +8,7 @@ export default {
   title: 'Components/Button',
   component: Button,
   args: {
-    label: 'Button',
-    secondary: false,
-    tertiary: false,
-    fluid: false,
-    isLoading: false,
-    disabled: false
+    label: 'Button'
   }
 } as ComponentMeta<typeof Button>;
 

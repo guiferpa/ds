@@ -8,6 +8,7 @@ import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
 
 export interface IconProps {
   loop?: boolean;
+  ease?: boolean;
   medium?: boolean;
   large?: boolean;
   xlarge?: boolean;
@@ -25,8 +26,14 @@ const iconLoopAnimation = keyframes`
 
 const iconResetStyle = () => css``
 
-const iconBaseStyle = (props: IconProps) => css`
-  ${props.loop && css`animation: ${iconLoopAnimation} 1s linear infinite;`}
+const iconBaseStyle = (props: IconProps) => css``
+
+const iconLinearAnimationStyle = (props: IconProps) => props.loop && css`
+  animation: ${iconLoopAnimation} 1s linear infinite;
+`
+
+const iconEaseAnimationStyle = (props: IconProps) => props.ease && css`
+  animation: ${iconLoopAnimation} 1s cubic-bezier(0.4, 0.2, 0.1, 0) infinite;
 `
 
 const iconSmallStyle = () => css`
@@ -51,7 +58,9 @@ const generateStyledIcon = (icon: any) => styled(icon)<IconProps>(
   iconSmallStyle,
   iconMediumStyle,
   iconLargeStyle,
-  iconExtraLargeStyle
+  iconExtraLargeStyle,
+  iconLinearAnimationStyle,
+  iconEaseAnimationStyle
 );
 
 export const SpinnerIcon = generateStyledIcon(SpinnerIos);

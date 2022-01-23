@@ -37,7 +37,7 @@ PlaceholderExtraLarge.args = {
   xlarge: true
 };
 
-const imageURL: string = "https://loremflickr.com/cache/resized/65535_51433944648_af5f972d37_c_500_500_nofilter.jpg";
+const imageURL: string = "https://loremflickr.com/500/500/person";
 
 export const ImageSmall = Template.bind({});
 ImageSmall.args = {

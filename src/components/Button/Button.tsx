@@ -20,7 +20,7 @@ const buttonResetStyle = () => css`
 
 const buttonBaseStyle = () => css`
   border-radius: ${({ theme }) => theme.border.radius.sm};
-  padding: ${({ theme }) => theme.spacing.inset.sm};
+  line-height: 50px;
   min-width: 160px;
   font-weight: ${({ theme }) => theme.brand.typography.weight.bold};
   font-size: ${({ theme }) => theme.typography.size.md};
@@ -80,11 +80,11 @@ const buttonIsLoadingStyle = (props: ButtonProps) => props.isLoading && css`
 `
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
-  const { disabled, isLoading, label } = props;
+  const { disabled, isLoading, label, ...rest } = props;
 
   return (
     <button 
-      {...props}
+      {...rest}
       disabled={disabled || isLoading}
     >
       {!isLoading && label}
