@@ -7,3 +7,8 @@ export { default as Breadcrumb } from './Breadcrumb';
 export { default as Heading } from './Heading';
 export { default as Select } from './Select';
 export { default as InputPassword } from './InputPassword';
+export { default as Toast } from './Toast';
+export { default as Sidebar } from './Sidebar';
+export { default as Header } from './Header';
+export { default as Modal } from './Modal';
+export { default as Alert } from './Alert';
