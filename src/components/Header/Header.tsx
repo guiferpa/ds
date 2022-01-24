@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Menu } from '@styled-icons/evaicons-solid';
 
 export interface HeaderProps {}
 
@@ -24,10 +25,19 @@ const StyledHeader = styled.header(
   headerBaseStyle
 );
 
+const StyledHeaderActionsContainer = styled.div``
+
+const StyledMenuIcon = styled(Menu)`
+  width: 25px;
+  height: 25px;
+`
+
 const Header: React.FunctionComponent<HeaderProps> = (props) => {
   return (
     <StyledHeader>
-
+      <StyledHeaderActionsContainer>
+        <StyledMenuIcon />
+      </StyledHeaderActionsContainer>
     </StyledHeader>
   );
 }

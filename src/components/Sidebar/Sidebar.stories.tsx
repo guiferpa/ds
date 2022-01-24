@@ -1,8 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import PageLoad from '../PageLoad';
-
 import Sidebar from './Sidebar';
 
 import { FolderIcon, LabIcon, PersonIcon } from '../Icon';
