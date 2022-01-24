@@ -35,8 +35,8 @@ const StyledSidebar = styled.nav(
 
 const StyledSidebarHeader = styled.header<{ isFolded: boolean; }>`
   position: relative;
-  height: 80px;
   display: flex;
+  height: 80px;
   align-items: center;
   ${({ isFolded }) => !isFolded 
     ? css`
@@ -55,8 +55,7 @@ const StyledSidebarNavigator = styled.ul`
   margin: 0;
   list-style: none;
   padding: 0 ${({ theme }) => theme.spacing.inset.sm};
-  margin-top: ${({ theme }) => theme.spacing.size.md};
-  height: 100%;
+  margin: ${({ theme }) => theme.spacing.size.md} 0;
 `
   
 const StyledSidebarNavigatorItem = styled.li`
@@ -120,7 +119,7 @@ const StyledSidebarNavigatorItemLinkName = styled.span``
 
 const StyledSidebarFooter = styled.footer`
   position: relative;
-  height: 80px;
+  flex-basis: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -130,6 +129,7 @@ const StyledSidebarFooter = styled.footer`
   box-sizing: border-box;
   border-top: solid 1px white;
   color: white;
+  bottom: 0;
 `
 
 const StyledSidebarFooterActionContainer = styled.ul`
