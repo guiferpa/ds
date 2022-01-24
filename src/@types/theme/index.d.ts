@@ -1,6 +1,6 @@
 import 'styled-components';
 
-import * as tokens from './tokens';
+import * as tokens from '../../tokens';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -108,5 +108,3 @@ declare module 'styled-components' {
     }
   }
 }
-
-declare module 'ttf';

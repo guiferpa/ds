@@ -1,36 +1,27 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import logo from './Logo.svg';
+
 export interface LogoProps {}
 
-/*
-const headingResetStyle = () => css`
-  border: none;
-  margin: 0;
-`
+const logoWrapperResetStyle = () => css``
 
-const headingBaseStyle = () => css`
-  font-size: ${({ theme }) => theme.typography.size.lg};
-  font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
-`
+const logoWrapperBaseStyle = () => css``
 
-const headingBoldStyle = (props: HeadingProps) => props.bold && css`
-  font-weight: ${({ theme }) => theme.brand.typography.weight.bold};
-`
-
-const StyledHeading = styled.h2(
-  headingResetStyle,
-  headingBaseStyle,
-  headingBoldStyle
+const StyledLogoWrapper = styled.div(
+  logoWrapperResetStyle,
+  logoWrapperBaseStyle
 );
-*/
 
-const StyledLogoWrapper = styled.div({});
+const StyledLogoImage = styled.img`
+  width: 100px;
+`
 
 const Logo: React.FunctionComponent<LogoProps> = (props) => {
   return (
     <StyledLogoWrapper>
-
+      <StyledLogoImage src={logo} />
     </StyledLogoWrapper>
   );
 }

@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
 import { Close } from '@styled-icons/evaicons-solid';
 
+import Logo from '../Logo';
+
 export interface Item {
   icon: React.ComponentType<any>;
   name: string;
@@ -174,7 +176,7 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>
       <StyledSidebarHeader isFolded={isFolded}>
-        {(!isFolded && isOpened) && <span>Cieds Core</span>}
+        {(!isFolded && isOpened) && <Logo />}
         <StyledCloseMenuIcon onClick={() => setIsOpened(false)} />
       </StyledSidebarHeader>
       <StyledSidebarNavigator>

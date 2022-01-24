@@ -2,6 +2,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import ts from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
+import url from '@rollup/plugin-url';
+import svgr from '@svgr/rollup';
 
 const pkg = require('./package.json');
 
@@ -23,7 +25,9 @@ const config = [
     plugins: [
       resolve(),
       commonjs(),
-      ts({ tsconfig: './tsconfig.json' })
+      url(),
+      svgr({ typescript: true }),
+      ts({ tsconfig: './tsconfig.json' }),
     ],
     external: ["react", "react-dom", "styled-components"],
     globals: { 'styled-components': 'styled' }
