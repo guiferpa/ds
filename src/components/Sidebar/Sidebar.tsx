@@ -33,12 +33,18 @@ const StyledSidebar = styled.nav(
   sidebarBaseStyle
 );
 
-const StyledSidebarHeader = styled.header`
+const StyledSidebarHeader = styled.header<{ isFolded: boolean; }>`
   position: relative;
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  ${({ isFolded }) => !isFolded 
+    ? css`
+      justify-content: space-between;
+  `
+    : css`
+      justify-content: space-around;
+  `}
   padding: 0 ${({ theme }) => theme.spacing.inset.sm};
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   width: 100%;
@@ -85,7 +91,6 @@ const StyledNavigatorItemIconWrapper = styled.div`
 const StyledIconToggleMenu = styled.div`
   position: relative;
   text-align: center;
-  width: 50px;
 `
 
 const StyledCloseMenuIcon = styled(Close)`
@@ -120,6 +125,7 @@ const StyledSidebarFooter = styled.footer`
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.brand.color.primary.pure};
+  padding: ${({ theme }) => theme.spacing.size.xs} 0;
   width: 100%;
   box-sizing: border-box;
   border-top: solid 1px white;
@@ -167,15 +173,9 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
 
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>
-      <StyledSidebarHeader>
+      <StyledSidebarHeader isFolded={isFolded}>
         {(!isFolded && isOpened) && <span>Cieds Core</span>}
-        <StyledCloseMenuIcon onClick={() => setIsOpened(false)}>
-          {!isFolded ? (
-            <StyledIconFoldMenu />
-          ) : (
-            <StyledIconUnfoldMenu />
-          )}
-        </StyledCloseMenuIcon>
+        <StyledCloseMenuIcon onClick={() => setIsOpened(false)} />
       </StyledSidebarHeader>
       <StyledSidebarNavigator>
         {props.items.map(({ icon: Icon, name, href }, idx: number) => {
