@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { CheckCircle, ErrorCircle, Error as Warning } from '@styled-icons/boxicons-solid';
+import { Close } from '@styled-icons/evaicons-solid';
 
 export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -12,110 +13,23 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
 }
 
-/*
-const alertResetStyle = () => css`
-  margin: 0;
-  padding: 0;
-`
-
-const alertBaseStyle = () => css`
-  box-sizing: border-box;
-  width: 100%;
-  font-size: ${({ theme }) => theme.typography.size.md};
-  padding: ${({ theme }) => theme.spacing.inset.sm};
-  border-style: solid;
-  border-width: ${({ theme }) => theme.border.size.md};
-  color: ${({ theme }) => theme.brand.color.light.pure};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-`
-  
-  const alertDefaultStyle = () => css`
-  border-color: ${({ theme }) => theme.brand.color.primary.dark};
-  background-color: ${({ theme }) => theme.brand.color.primary.pure};
-`
-
-const alertWarningStyle = (props: AlertProps) => props.warning && css`
-  border-color: ${({ theme }) => theme.brand.color.feedback.warning.dark};
-  background-color: ${({ theme }) => theme.brand.color.feedback.warning.pure};
-`
-
-const alertFailureStyle = (props: AlertProps) => props.failure && css`
-  border-color: ${({ theme }) => theme.brand.color.feedback.failure.dark};
-  background-color: ${({ theme }) => theme.brand.color.feedback.failure.pure};
-`
-
-const alertSuccessStyle = (props: AlertProps) => props.success && css`
-  border-color: ${({ theme }) => theme.brand.color.feedback.success.dark};
-  background-color: ${({ theme }) => theme.brand.color.feedback.success.pure};
-`
-
-const StyledAlert = styled.div(
-  alertResetStyle,
-  alertBaseStyle,
-  alertDefaultStyle,
-  alertWarningStyle,
-  alertFailureStyle,
-  alertSuccessStyle
-);
-
-const StyledAlertContentWrapper = styled.div({});
-
-const alertTitleResetStyle = () => css`
-  margin: 0;
-  padding: 0;
-`
-
-const alertTitleBaseStyle = () => css`
-  font-size: ${({ theme }) => theme.typography.size.md};
-  font-weight: ${({ theme }) => theme.brand.typography.weight.bold};
-  margin-bottom: ${({ theme }) => theme.spacing.size.xs};
-`
-
-const StyledAlertTitle = styled.h1(
-  alertTitleResetStyle,
-  alertTitleBaseStyle
-);
-
-const StyledAlertMessage = styled.span({});
-
-const alertCloseButtonResetStyle = () => css``
-
-const alertCloseButtonBaseStyle = () => css`
-  color: ${({ theme }) => theme.brand.color.light.pure};
-  border-radius: ${({ theme }) => theme.border.radius.xs};
-  width: 20px;
-
-  @media (max-width: 768px) {
-    width: 50px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.brand.color.light.dark};
-  }
-`
-
-const StyledAlertCloseButton = styled(Close)(
-  alertCloseButtonResetStyle,
-  alertCloseButtonBaseStyle
-);
-*/
-
 const toastResetStyle = () => css`
   margin: 0;
   padding: 0;
 `
 
 const toastBaseStyle = () => css`
+  position: relative;
   padding: ${({ theme }) => theme.spacing.inset.md};
   border-radius: ${({ theme }) => theme.border.radius.sm};
   width: 300px;
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
   border: solid ${({ theme }) => theme.border.size.sm} ${({ theme }) => theme.brand.color.heavy.pure};
+
+  @media and (min-width: 375px) {
+    width: 100%;
+  }
 `
 
 const toastSuccessStyle = (props: ToastProps) => props.success && css`
@@ -204,6 +118,34 @@ const StyledFailureIcon = styled(ErrorCircle)(
   `
 )
 
+const StyledCloseIcon = styled(Close)`
+  width: 23px;
+  width: 23px;
+  `
+  
+const StyledCloseButton = styled.button`
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+
+  position: absolute;
+  top: ${({ theme }) => theme.spacing.size.xs};
+  right: ${({ theme }) => theme.spacing.size.xs};
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: ${({ theme }) => theme.border.radius.xs};
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.brand.color.light.light};
+  }
+`
+
 const Toast: React.FunctionComponent<ToastProps> = (props) => {
   return (
     <StyledToast {...props}>
@@ -218,6 +160,9 @@ const Toast: React.FunctionComponent<ToastProps> = (props) => {
       <StyledToastBody>
         {props.message}
       </StyledToastBody>
+      <StyledCloseButton onClick={() => props.onClose && props.onClose()}>
+        <StyledCloseIcon />
+      </StyledCloseButton>
     </StyledToast>
   );
 }
