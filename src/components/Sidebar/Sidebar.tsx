@@ -35,7 +35,7 @@ const StyledSidebar = styled.nav(
   sidebarBaseStyle
 );
 
-const StyledSidebarHeader = styled.header<{ isFolded: boolean; }>`
+const StyledSidebarHeader = styled.header<{ isOpened: boolean; isFolded: boolean; }>`
   position: relative;
   display: flex;
   height: 80px;
@@ -47,7 +47,7 @@ const StyledSidebarHeader = styled.header<{ isFolded: boolean; }>`
     : css`
       justify-content: space-around;
   `}
-  padding: 0 ${({ theme }) => theme.spacing.inset.sm};
+  ${({ isOpened }) => isOpened && css`padding: 0 ${({ theme }) => theme.spacing.inset.sm}`};
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   width: 100%;
   box-sizing: border-box;
@@ -175,7 +175,7 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
 
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>
-      <StyledSidebarHeader isFolded={isFolded}>
+      <StyledSidebarHeader isOpened={isOpened} isFolded={isFolded}>
         {(!isFolded && isOpened) && <Logo />}
         <StyledCloseMenuIcon onClick={() => setIsOpened(false)} />
       </StyledSidebarHeader>
