@@ -8,16 +8,23 @@ export interface UserProfileProps {
   avatarURL: string;
   name: string;
   role: string;
+  renderMenu?: () => React.ReactNode;
 }
 
 const userProfileContainerResetStyle = () => css``
 
 const userProfileContainerBaseStyle = () => css`
+  position: relative;
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.size.xs};
   flex-basis: content;
   height: 60px;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 425px) {
+    flex-basis: 100%;
+  }
 `
 
 const StyledUserProfileContainer = styled.div(
@@ -88,6 +95,32 @@ const StyledUserProfileDownMenuIcon = styled(ChevronSmallDown)(
   userProfileMenuIconStyle
 );
 
+const userProfileMenuResetStyle = () => css``
+
+const userProfileMenuBaseStyle = () => css`
+  z-index: 9999;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: ${({ theme }) => theme.spacing.size.md};
+  width: 300px;
+  min-height: 100px;
+  background-color: ${({ theme }) => theme.brand.color.light.pure};
+  box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  padding: ${({ theme }) => theme.spacing.size.sm};
+  box-sizing: border-box;
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
+`
+
+const StyledUserProfileMenu = styled.div(
+  userProfileMenuResetStyle,
+  userProfileMenuBaseStyle
+);
+
 const UserProfile: React.FunctionComponent<UserProfileProps> = (props) => {
   const [isMenuOpened, setIsMenuOpened] = React.useState<boolean>(false);
 
@@ -102,13 +135,18 @@ const UserProfile: React.FunctionComponent<UserProfileProps> = (props) => {
           {props.role}
         </StyledUserProfileInfoRole>
       </StyledUserProfileInfo>
-      <StyledUserProfileMenuButton onClick={() => setIsMenuOpened(!isMenuOpened)}>
+      {props.renderMenu && <StyledUserProfileMenuButton onClick={() => setIsMenuOpened(!isMenuOpened)}>
         {isMenuOpened ? (
           <StyledUserProfileUpMenuIcon />
           ) : (
           <StyledUserProfileDownMenuIcon />
         )}
-      </StyledUserProfileMenuButton>
+      </StyledUserProfileMenuButton>}
+      {(props.renderMenu && isMenuOpened) && (
+        <StyledUserProfileMenu>
+          {props.renderMenu()}
+        </StyledUserProfileMenu>
+      )}
     </StyledUserProfileContainer>
   );
 }

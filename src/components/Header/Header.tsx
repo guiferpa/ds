@@ -25,6 +25,10 @@ const headerBaseStyle = () => css`
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   box-shadow: ${({ theme }) => `${theme.shadow.intensity.one} ${theme.brand.color.light.medium}`};
   padding: 0 ${({ theme }) => theme.spacing.size.lg};
+
+  @media screen and (max-width: 415px) {
+    padding: 0 ${({ theme }) => theme.spacing.size.sm};
+  }
 `
 
 const StyledHeader = styled.header(
@@ -63,6 +67,9 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
         avatarURL="" 
         name="Guilherme Paixão" 
         role="Tester" 
+        renderMenu={() => (
+          <span>Header Component fdsfd sdf</span>
+        )}
       />
     </StyledHeader>
   );
