@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Menu } from '@styled-icons/evaicons-solid';
+import { ChevronSmallDown } from '@styled-icons/entypo';
 
-import Avatar from '../Avatar';
+import UserProfile from '../UserProfile';
 
 export interface HeaderProps {}
 
@@ -50,20 +51,6 @@ const StyledOpenMenuButton = styled.button`
   }
 `
 
-const StyledProfile = styled.div`
-  display: flex;
-  align-items: center;
-  width: 280px;
-  height: 60px;
-  background: red;
-`
-
-const StyledProfileInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: ${({ theme }) => theme.spacing.size.sm};
-`
-
 const Header: React.FunctionComponent<HeaderProps> = (props) => {
   return (
     <StyledHeader>
@@ -72,13 +59,11 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
           <StyledMenuIcon />
         </StyledOpenMenuButton>
       </StyledHeaderActionsContainer>
-      <StyledProfile>
-        <Avatar medium />
-        <StyledProfileInfo>
-          <span>Guilherme Paixão</span>
-          <span>Testing</span>
-        </StyledProfileInfo>
-      </StyledProfile>
+      <UserProfile 
+        avatarURL="" 
+        name="Guilherme Paixão" 
+        role="Tester" 
+      />
     </StyledHeader>
   );
 }
