@@ -11,5 +11,15 @@ export default {
 
 const Template: ComponentStory<typeof Heading> = (args) => <Heading {...args}> I'm a heading </Heading>;
 
-export const Simple = Template.bind({});
-Simple.args = {};
+export const Small = Template.bind({});
+Small.args = {};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  medium: true
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  large: true
+};

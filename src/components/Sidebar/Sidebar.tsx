@@ -13,6 +13,7 @@ export interface Item {
 
 export interface SidebarProps {
   open?: boolean;
+  fold?: boolean;
   items: Item[];
 }
 
@@ -170,8 +171,8 @@ const StyledSidebarFooterActionItem = styled.li<{ isFolded: boolean; }>`
 `
 
 const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
-  const [isFolded, setIsFolded] = React.useState<boolean>(false);
-  const [isOpened, setIsOpened] = React.useState<boolean>(props.open || true);
+  const [isFolded, setIsFolded] = React.useState<boolean>(props.fold || false);
+  const [isOpened, setIsOpened] = React.useState<boolean>(props.open || false);
 
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>

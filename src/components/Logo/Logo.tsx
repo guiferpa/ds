@@ -1,22 +1,38 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export interface LogoProps {}
+export interface LogoProps {
+  medium?: boolean;
+  large?: boolean;
+}
 
 const logoWrapperResetStyle = () => css``
 
-const logoWrapperBaseStyle = () => css`
+const logoWrapperBaseStyle = () => css``
+
+const logoWrapperSmallStyle = () => css`
   width: 100px;
+`
+
+const logoWrapperMediumStyle = (props: LogoProps) => props.medium && css`
+  width: 140px;
+`
+
+const logoWrapperLargeStyle = (props: LogoProps) => props.large && css`
+  width: 160px;
 `
 
 const StyledLogoWrapper = styled.div(
   logoWrapperResetStyle,
-  logoWrapperBaseStyle
+  logoWrapperBaseStyle,
+  logoWrapperSmallStyle,
+  logoWrapperMediumStyle,
+  logoWrapperLargeStyle
 );
 
 const Logo: React.FunctionComponent<LogoProps> = (props) => {
   return (
-    <StyledLogoWrapper>
+    <StyledLogoWrapper {...props}>
       <svg viewBox="0 0 154 78" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" clipRule="evenodd" d="M39.829 27.8195C37.7686 26.428 35.9311 23.6167 35.375 19.8317C34.6525 14.7681 36.6 9.8399 33.7605 5.07827C31.3388 0.957356 26.1594 -1.10028 21.5954 0.59607C17.8104 2.01863 15.0273 5.71898 14.8044 10.2576C14.4148 17.8023 20.0119 22.674 26.2723 25.4288C30.2521 27.1788 35.0674 28.3473 39.829 27.8195Z" fill="#FECA05"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M35.8739 24.2828C35.3179 24.6723 33.2292 28.8469 35.0413 28.542C35.4872 28.4602 35.7356 28.3755 36.1534 28.3191C39.6053 27.4017 42.473 29.6005 44.0311 32.1888C45.7839 35.1383 47.4548 37.8395 50.1842 39.7588C53.2185 41.8447 57.2829 42.4035 60.7321 41.1221C67.3848 38.6467 70.7267 29.736 66.0215 23.3909C61.6522 17.4325 53.5515 15.9027 46.4246 17.7402C42.2472 18.8014 38.4086 21.0538 35.8739 24.2828Z" fill="#C1172F"/>

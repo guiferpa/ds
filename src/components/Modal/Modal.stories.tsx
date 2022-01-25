@@ -18,8 +18,8 @@ export default {
 const Template: ComponentStory<typeof Modal> = (args) => {
   return (
     <Modal {...args} actions={[
-      <Button secondary label='Cancelar' />,
-      <Button label='Confirmar' />
+      <Button secondary label='Cancelar' key={0} />,
+      <Button label='Confirmar' key={1} />
     ]} />
   );
 }

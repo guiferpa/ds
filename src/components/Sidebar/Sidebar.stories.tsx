@@ -20,10 +20,12 @@ const Template: ComponentStory<typeof Sidebar> = (args) => (
 
 export const Unfold = Template.bind({});
 Unfold.args = {
-  open: true
+  open: true,
+  fold: false
 };
 
 export const Fold = Template.bind({});
 Fold.args = {
-  open: false
+  open: true,
+  fold: true
 };

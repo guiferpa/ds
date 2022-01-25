@@ -1,6 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Button, Heading, Input, Link } from '../..';
+
+import Logo from '../../Logo';
+import Link from '../../Link';
+import Input from '../../Input';
+import Heading from '../../Heading';
+import Button from '../../Button';
 import InputPassword from '../../InputPassword';
 
 export interface FormLoginProps extends React.FormHTMLAttributes<HTMLFormElement> {
@@ -86,9 +91,14 @@ const StyledSignUpLabel = styled.span(
   signUpLabelBaseStyle
 );
 
+const StyledLogo = styled(Logo)`
+  margin-bottom: ${({ theme }) => theme.spacing.size.md};
+`
+
 const FormLogin: React.FunctionComponent<FormLoginProps> = (props) => {
   return (
     <StyledFormLogin {...props}>
+      <StyledLogo large />
       <Heading> Faça seu Log in </Heading>
       <StyledInputGroup>
         <Input fluid placeholder="Digite seu CPF" />
