@@ -21,3 +21,8 @@ export const Fluid = Template.bind({});
 Fluid.args = {
   fluid: true
 };
+
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  label: "Label"
+};

@@ -1,18 +1,17 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import FormLogin from './Login';
+import Divider from './Divider';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/Forms/Login',
-  component: FormLogin
-} as ComponentMeta<typeof FormLogin>;
+  title: 'Components/Divider',
+  component: Divider
+} as ComponentMeta<typeof Divider>;
 
-const Template: ComponentStory<typeof FormLogin> = (args) => <FormLogin {...args} />;
+const Template: ComponentStory<typeof Divider> = (args) => <Divider {...args} />;
 
 export const Simple = Template.bind({});
 Simple.args = {
-  forgotPasswordPath: '/#',
-  signUpPath: '/#'
+  size: "50%"
 };

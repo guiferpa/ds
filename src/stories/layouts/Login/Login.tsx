@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Logo from '../../Logo';
-import Link from '../../Link';
-import Input from '../../Input';
-import Heading from '../../Heading';
-import Button from '../../Button';
-import InputPassword from '../../InputPassword';
+import Logo from '../../../components/Logo';
+import Link from '../../../components/Link';
+import Input from '../../../components/Input';
+import Heading from '../../../components/Heading';
+import Button from '../../../components/Button';
+import InputPassword from '../../../components/InputPassword';
 
 export interface FormLoginProps extends React.FormHTMLAttributes<HTMLFormElement> {
   forgotPasswordPath: string;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Avatar from '../Avatar';
-import Input from '../Input';
-import Select from '../Select';
+import Avatar from '../../../components/Avatar';
+import Input from '../../../components/Input';
+import Select from '../../../components/Select';
 
 export interface AccountCardProps {}
 

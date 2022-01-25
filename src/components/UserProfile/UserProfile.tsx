@@ -102,7 +102,7 @@ const userProfileMenuBaseStyle = () => css`
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: ${({ theme }) => theme.spacing.size.md};
+  margin-top: ${({ theme }) => theme.spacing.size.xs};
   width: 300px;
   min-height: 100px;
   background-color: ${({ theme }) => theme.brand.color.light.pure};

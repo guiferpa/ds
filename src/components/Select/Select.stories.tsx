@@ -3,12 +3,10 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Input from './Select';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/Select',
   component: Input,
   args: {
-    label: "Label",
     options: [
       { label: "Option 1", value: "option1" },
       { label: "Option 2", value: "option2" },
@@ -25,4 +23,9 @@ Simple.args = {};
 export const Fluid = Template.bind({});
 Fluid.args = {
   fluid: true
+};
+
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  label: "Label"
 };
