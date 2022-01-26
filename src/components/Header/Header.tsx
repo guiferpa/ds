@@ -1,11 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Menu } from '@styled-icons/evaicons-solid';
-import { ChevronSmallDown } from '@styled-icons/entypo';
+import { Menu, Close } from '@styled-icons/evaicons-solid';
 
-import UserProfile from '../UserProfile';
+import UserProfile, { UserProfileProps } from '../UserProfile/UserProfile';
 
-export interface HeaderProps {}
+export interface HeaderProps {
+  user: UserProfileProps;
+  hasMenuOpened: boolean;
+
+  onClickToggleMenu?: () => void;
+}
 
 const headerResetStyle = () => css`
   padding: 0;
@@ -16,14 +20,13 @@ const headerBaseStyle = () => css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.brand.color.light.pure};
-  box-shadow: ${({ theme }) => `${theme.shadow.intensity.one} ${theme.brand.color.light.medium}`};
   padding: 0 ${({ theme }) => theme.spacing.size.lg};
 
   @media screen and (max-width: 415px) {
@@ -38,7 +41,12 @@ const StyledHeader = styled.header(
 
 const StyledHeaderActionsContainer = styled.div``
 
-const StyledMenuIcon = styled(Menu)`
+const StyledMenuIconClose = styled(Close)`
+  width: 25px;
+  height: 25px;
+`
+
+const StyledMenuIconOpen = styled(Menu)`
   width: 25px;
   height: 25px;
 `
@@ -56,21 +64,22 @@ const StyledOpenMenuButton = styled.button`
 `
 
 const Header: React.FunctionComponent<HeaderProps> = (props) => {
+  const { hasMenuOpened } = props;
+
   return (
     <StyledHeader>
       <StyledHeaderActionsContainer>
-        <StyledOpenMenuButton>
-          <StyledMenuIcon />
+        <StyledOpenMenuButton onClick={() => {
+          props.onClickToggleMenu && props.onClickToggleMenu();
+        }}>
+          {hasMenuOpened ? (
+            <StyledMenuIconOpen />
+            ) : (
+            <StyledMenuIconClose />
+          )}
         </StyledOpenMenuButton>
       </StyledHeaderActionsContainer>
-      <UserProfile 
-        avatarURL="" 
-        name="Guilherme Paixão" 
-        role="Tester" 
-        renderMenu={() => (
-          <span>Header Component fdsfd sdf</span>
-        )}
-      />
+      <UserProfile {...props.user} />
     </StyledHeader>
   );
 }

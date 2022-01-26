@@ -27,11 +27,13 @@ WithMenu.args = {
     return (
       <>
         <UserProfileMenuSection title="Troca de perfil" items={[
-          { label: "Testing", href: "/#" }
+          { label: "Item 1", href: "/#" }
         ]} />
         <Divider />
-        <UserProfileMenuSection title="Configurações" items={[]} />
-        <UserProfileMenuItem label='Testing' href='/#' />
+        <UserProfileMenuSection title="Configurações" items={[
+          { label: "Item 2", href: "/#" }
+        ]} />
+        <UserProfileMenuItem label='Item 3' href='/#' />
       </>
     )
   }

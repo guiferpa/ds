@@ -15,6 +15,8 @@ export interface SidebarProps {
   open?: boolean;
   fold?: boolean;
   items: Item[];
+
+  onClose?: () => void;
 }
 
 const sidebarResetStyle = () => css``
@@ -22,7 +24,8 @@ const sidebarResetStyle = () => css``
 const sidebarBaseStyle = (props: { isFolded: boolean; isOpened: boolean; }) => css`
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: aboslute;
+  height: 100%;
   top: 0;
   left: 0;
   width: ${ props.isOpened ? (!props.isFolded ? "290px" : "90px") : "0px" };
@@ -172,13 +175,12 @@ const StyledSidebarFooterActionItem = styled.li<{ isFolded: boolean; }>`
 
 const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
   const [isFolded, setIsFolded] = React.useState<boolean>(props.fold || false);
-  const [isOpened, setIsOpened] = React.useState<boolean>(props.open || false);
+  const { open: isOpened = false } = props;
 
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>
       <StyledSidebarHeader isOpened={isOpened} isFolded={isFolded}>
         {(!isFolded && isOpened) && <Logo />}
-        <StyledCloseMenuIcon onClick={() => setIsOpened(false)} />
       </StyledSidebarHeader>
       <StyledSidebarNavigator>
         {props.items.map(({ icon: Icon, name, href }, idx: number) => {

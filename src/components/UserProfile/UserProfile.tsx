@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { ChevronSmallDown, ChevronSmallUp } from '@styled-icons/entypo';
 
 import Avatar from '../Avatar';
+import UserProfileMenu from '../UserProfileMenu';
 
 export interface UserProfileProps {
   avatarURL: string;
@@ -95,32 +96,6 @@ const StyledUserProfileDownMenuIcon = styled(ChevronSmallDown)(
   userProfileMenuIconStyle
 );
 
-const userProfileMenuResetStyle = () => css``
-
-const userProfileMenuBaseStyle = () => css`
-  z-index: 9999;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: ${({ theme }) => theme.spacing.size.xs};
-  width: 300px;
-  min-height: 100px;
-  background-color: ${({ theme }) => theme.brand.color.light.pure};
-  box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  padding: ${({ theme }) => theme.spacing.size.sm};
-  box-sizing: border-box;
-
-  @media screen and (max-width: 425px) {
-    width: 100%;
-  }
-`
-
-const StyledUserProfileMenu = styled.div(
-  userProfileMenuResetStyle,
-  userProfileMenuBaseStyle
-);
-
 const UserProfile: React.FunctionComponent<UserProfileProps> = (props) => {
   const [isMenuOpened, setIsMenuOpened] = React.useState<boolean>(false);
 
@@ -143,9 +118,9 @@ const UserProfile: React.FunctionComponent<UserProfileProps> = (props) => {
         )}
       </StyledUserProfileMenuButton>}
       {(props.renderMenu && isMenuOpened) && (
-        <StyledUserProfileMenu>
+        <UserProfileMenu>
           {props.renderMenu()}
-        </StyledUserProfileMenu>
+        </UserProfileMenu>
       )}
     </StyledUserProfileContainer>
   );
