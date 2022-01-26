@@ -17,6 +17,7 @@ export interface SidebarProps {
   items: Item[];
 
   onClose?: () => void;
+  onFold?: () => void;
 }
 
 const sidebarResetStyle = () => css``
@@ -24,7 +25,7 @@ const sidebarResetStyle = () => css``
 const sidebarBaseStyle = (props: { isFolded: boolean; isOpened: boolean; }) => css`
   display: flex;
   flex-direction: column;
-  position: aboslute;
+  position: sticky;
   height: 100%;
   top: 0;
   left: 0;
@@ -121,6 +122,8 @@ const StyledIconFoldMenu = styled(MenuFold)(iconToggleMenuStyle);
 
 const StyledIconUnfoldMenu = styled(MenuUnfold)(iconToggleMenuStyle);
 
+const StyledIconCloseMenu = styled(Close)(iconToggleMenuStyle);
+
 const StyledSidebarNavigatorItemLinkName = styled.span``
 
 const StyledSidebarFooter = styled.footer`
@@ -168,14 +171,13 @@ const StyledSidebarFooterActionItem = styled.li<{ isFolded: boolean; }>`
     background-color: ${({ theme }) => theme.brand.color.primary.dark};
   }
 
-  &:hover ${StyledIconFoldMenu}, &:hover ${StyledIconUnfoldMenu} {
+  &:hover ${StyledIconFoldMenu}, &:hover ${StyledIconUnfoldMenu}, &:hover ${StyledIconCloseMenu} {
     color: ${({ theme }) => theme.brand.color.secondary.pure};
   }
 `
 
 const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
-  const [isFolded, setIsFolded] = React.useState<boolean>(props.fold || false);
-  const { open: isOpened = false } = props;
+  const { open: isOpened = false, fold: isFolded = false } = props;
 
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>
@@ -200,7 +202,12 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
       </StyledSidebarNavigator>
       <StyledSidebarFooter>
         <StyledSidebarFooterActionContainer>
-          <StyledSidebarFooterActionItem isFolded={isFolded} onClick={() => setIsFolded(!isFolded)}>
+          <StyledSidebarFooterActionItem 
+            isFolded={isFolded} 
+            onClick={() => {
+              props.onFold && props.onFold();
+            }}
+          >
             {(!isFolded && isOpened) && <span>Minimizar</span>}
             <StyledIconToggleMenu>
               {!isFolded ? (
@@ -208,6 +215,17 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
               ) : (
                 <StyledIconUnfoldMenu />
               )}
+            </StyledIconToggleMenu>
+          </StyledSidebarFooterActionItem>
+          <StyledSidebarFooterActionItem 
+            isFolded={isFolded} 
+            onClick={() => {
+              props.onClose && props.onClose();
+            }}
+          >
+            {(!isFolded && isOpened) && <span>Fechar</span>}
+            <StyledIconToggleMenu>
+              <StyledIconCloseMenu />
             </StyledIconToggleMenu>
           </StyledSidebarFooterActionItem>
         </StyledSidebarFooterActionContainer>

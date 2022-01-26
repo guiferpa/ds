@@ -8,22 +8,38 @@ import UserProfileMenuSection from '../../../components/UserProfileMenuSection';
 import UserProfileMenuItem from '../../../components/UserProfileMenuItem';
 import Divider from '../../../components/Divider';
 
+import { useWindowDimensions } from '../../../hooks/window';
+
 export interface LoggedProps {}
 
-const StyledLoggedContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+export interface LoggedContainerProps {
+  width?: string;
+  height?: string;
+}
+
+const StyledLoggedSideContent = styled.div`
+  position: relative;
+  height: 100%;
+  flex-basis: content;
 `
 
-const StyledLoggedContent = styled.div`
+const StyledLoggedMainContent = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
+  flex-basis: 100%;
+`
+
+const StyledLoggedContainer = styled.div<LoggedContainerProps>`
+  width: ${(props) => props.width || "100vw"};
+  height: ${(props) => props.height || "100vh"};
+  display: flex;
+  overflow: hidden;
 `
 
 const Logged: React.FunctionComponent<LoggedProps> = (props) => {
   const [isMenuOpened, setIsMenuOpened] = React.useState<boolean>(true);
+  const [isMenuFolded, setIsMenuFolded] = React.useState<boolean>(false);
+
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   const user = {
     avatarURL: "",
@@ -43,30 +59,34 @@ const Logged: React.FunctionComponent<LoggedProps> = (props) => {
     )
   }
 
-  console.log("isMenuOpened", isMenuOpened);
-
   return (
-    <StyledLoggedContainer>
-      <Sidebar 
-        open={isMenuOpened} 
-        items={[
-          { icon: FolderIcon, name: "Projetos", href: "/#" },
-          { icon: PersonIcon, name: "Perfil de usuário", href: "/#" },
-          { icon: LabIcon, name: "Experiências", href: "/#" }
-        ]} 
-        onClose={() => {
-          setIsMenuOpened(false);
-        }}
-      />
-      <StyledLoggedContent>
+    <StyledLoggedContainer width={`${windowWidth}px`} height={`${windowHeight}px`}>
+      <StyledLoggedSideContent>
+        <Sidebar 
+          open={isMenuOpened} 
+          fold={isMenuFolded}
+          items={[
+            { icon: FolderIcon, name: "Projetos", href: "/#" },
+            { icon: PersonIcon, name: "Perfil de usuário", href: "/#" },
+            { icon: LabIcon, name: "Experiências", href: "/#" }
+          ]} 
+          onClose={() => {
+            setIsMenuOpened(false);
+          }}
+          onFold={() => {
+            setIsMenuFolded(!isMenuFolded);
+          }}
+        />
+      </StyledLoggedSideContent>
+      <StyledLoggedMainContent>
         <Header 
           user={user} 
           hasMenuOpened={!isMenuOpened} 
-          onClickToggleMenu={() => {
-            setIsMenuOpened(!isMenuOpened);
+          onClickMenu={() => {
+            setIsMenuOpened(true);
           }} 
         />
-      </StyledLoggedContent>
+      </StyledLoggedMainContent>
     </StyledLoggedContainer>
   );
 }

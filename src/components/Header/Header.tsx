@@ -8,7 +8,7 @@ export interface HeaderProps {
   user: UserProfileProps;
   hasMenuOpened: boolean;
 
-  onClickToggleMenu?: () => void;
+  onClickMenu?: () => void;
 }
 
 const headerResetStyle = () => css`
@@ -28,6 +28,10 @@ const headerBaseStyle = () => css`
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   padding: 0 ${({ theme }) => theme.spacing.size.lg};
+
+  @media screen and (max-width: 768px) {
+
+  }
 
   @media screen and (max-width: 415px) {
     padding: 0 ${({ theme }) => theme.spacing.size.sm};
@@ -70,13 +74,9 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
     <StyledHeader>
       <StyledHeaderActionsContainer>
         <StyledOpenMenuButton onClick={() => {
-          props.onClickToggleMenu && props.onClickToggleMenu();
+          props.onClickMenu && props.onClickMenu();
         }}>
-          {hasMenuOpened ? (
-            <StyledMenuIconOpen />
-            ) : (
-            <StyledMenuIconClose />
-          )}
+          <StyledMenuIconOpen />
         </StyledOpenMenuButton>
       </StyledHeaderActionsContainer>
       <UserProfile {...props.user} />
