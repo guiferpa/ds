@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
 import { Close } from '@styled-icons/evaicons-solid';
 
-import Logo from '../Logo';
-
 export interface Item {
   icon: React.ComponentType<any>;
   name: string;
@@ -16,7 +14,6 @@ export interface SidebarProps {
   fold?: boolean;
   items: Item[];
 
-  onClose?: () => void;
   onFold?: () => void;
 }
 
@@ -25,7 +22,7 @@ const sidebarResetStyle = () => css``
 const sidebarBaseStyle = (props: { isFolded: boolean; isOpened: boolean; }) => css`
   display: flex;
   flex-direction: column;
-  position: sticky;
+  position: absolute;
   height: 100%;
   top: 0;
   left: 0;
@@ -33,30 +30,13 @@ const sidebarBaseStyle = (props: { isFolded: boolean; isOpened: boolean; }) => c
   height: 100%;
   transition: width 1s;
   background-color: ${({ theme }) => theme.brand.color.primary.pure};
+  z-index: 999;
 `
 
 const StyledSidebar = styled.nav(
   sidebarResetStyle,
   sidebarBaseStyle
 );
-
-const StyledSidebarHeader = styled.header<{ isOpened: boolean; isFolded: boolean; }>`
-  position: relative;
-  display: flex;
-  height: 80px;
-  align-items: center;
-  ${({ isFolded }) => !isFolded 
-    ? css`
-      justify-content: space-between;
-  `
-    : css`
-      justify-content: space-around;
-  `}
-  ${({ isOpened }) => isOpened && css`padding: 0 ${({ theme }) => theme.spacing.inset.sm}`};
-  background-color: ${({ theme }) => theme.brand.color.light.pure};
-  width: 100%;
-  box-sizing: border-box;
-`
 
 const StyledSidebarNavigator = styled.ul`
   margin: 0;
@@ -99,18 +79,6 @@ const StyledIconToggleMenu = styled.div`
   text-align: center;
 `
 
-const StyledCloseMenuIcon = styled(Close)`
-  color: ${({ theme }) => theme.brand.color.primary.dark};
-  padding: ${({ theme }) => theme.spacing.inset.xs};
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  width: 20px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.brand.color.light.light};
-  }
-`
-
 const iconToggleMenuStyle = () => css`
   color: ${({ theme }) => theme.brand.color.light.pure};
   padding: ${({ theme }) => theme.spacing.inset.xs};
@@ -127,18 +95,18 @@ const StyledIconCloseMenu = styled(Close)(iconToggleMenuStyle);
 const StyledSidebarNavigatorItemLinkName = styled.span``
 
 const StyledSidebarFooter = styled.footer`
-  position: relative;
+  box-sizing: border-box;
   flex-basis: 80px;
+  width: 100%;
+  border-top: solid ${({ theme }) => `${theme.border.size.sm} ${theme.brand.color.light.pure}`};
+  background-color: ${({ theme }) => theme.brand.color.primary.pure};
+  color: ${({ theme }) => theme.brand.color.light.pure};
+  padding: ${({ theme }) => theme.spacing.size.xs} 0;
+  position: absolute;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.brand.color.primary.pure};
-  padding: ${({ theme }) => theme.spacing.size.xs} 0;
-  width: 100%;
-  box-sizing: border-box;
-  border-top: solid 1px white;
-  color: white;
-  bottom: 0;
 `
 
 const StyledSidebarFooterActionContainer = styled.ul`
@@ -181,11 +149,8 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
 
   return (
     <StyledSidebar isOpened={isOpened} isFolded={isFolded}>
-      <StyledSidebarHeader isOpened={isOpened} isFolded={isFolded}>
-        {(!isFolded && isOpened) && <Logo />}
-      </StyledSidebarHeader>
       <StyledSidebarNavigator>
-        {props.items.map(({ icon: Icon, name, href }, idx: number) => {
+        {isOpened && props.items.map(({ icon: Icon, name, href }, idx: number) => {
           return (
             <StyledSidebarNavigatorItem key={idx}>
               <StyledSidebarNavigatorItemLink href={href}>
@@ -200,36 +165,27 @@ const Sidebar: React.FunctionComponent<SidebarProps> = (props) => {
           );
         })}
       </StyledSidebarNavigator>
+      {isOpened && (
       <StyledSidebarFooter>
         <StyledSidebarFooterActionContainer>
-          <StyledSidebarFooterActionItem 
-            isFolded={isFolded} 
-            onClick={() => {
-              props.onFold && props.onFold();
-            }}
-          >
-            {(!isFolded && isOpened) && <span>Minimizar</span>}
-            <StyledIconToggleMenu>
-              {!isFolded ? (
-                <StyledIconFoldMenu />
-              ) : (
-                <StyledIconUnfoldMenu />
-              )}
-            </StyledIconToggleMenu>
-          </StyledSidebarFooterActionItem>
-          <StyledSidebarFooterActionItem 
-            isFolded={isFolded} 
-            onClick={() => {
-              props.onClose && props.onClose();
-            }}
-          >
-            {(!isFolded && isOpened) && <span>Fechar</span>}
-            <StyledIconToggleMenu>
-              <StyledIconCloseMenu />
-            </StyledIconToggleMenu>
-          </StyledSidebarFooterActionItem>
+            <StyledSidebarFooterActionItem 
+              isFolded={isFolded} 
+              onClick={() => {
+                props.onFold && props.onFold();
+              }}
+            >
+              {(!isFolded && isOpened) && <span>Minimizar</span>}
+              <StyledIconToggleMenu>
+                {!isFolded ? (
+                  <StyledIconFoldMenu />
+                ) : (
+                  <StyledIconUnfoldMenu />
+                )}
+              </StyledIconToggleMenu>
+            </StyledSidebarFooterActionItem>
         </StyledSidebarFooterActionContainer>
       </StyledSidebarFooter>
+      )}
     </StyledSidebar>
   );
 }

@@ -4,6 +4,8 @@ import { Menu, Close } from '@styled-icons/evaicons-solid';
 
 import UserProfile, { UserProfileProps } from '../UserProfile/UserProfile';
 
+import Logo from '../Logo';
+
 export interface HeaderProps {
   user: UserProfileProps;
   hasMenuOpened: boolean;
@@ -20,7 +22,7 @@ const headerBaseStyle = () => css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -43,7 +45,11 @@ const StyledHeader = styled.header(
   headerBaseStyle
 );
 
-const StyledHeaderActionsContainer = styled.div``
+const StyledHeaderActionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.size.md};
+`
 
 const StyledMenuIconClose = styled(Close)`
   width: 25px;
@@ -68,11 +74,10 @@ const StyledOpenMenuButton = styled.button`
 `
 
 const Header: React.FunctionComponent<HeaderProps> = (props) => {
-  const { hasMenuOpened } = props;
-
   return (
     <StyledHeader>
       <StyledHeaderActionsContainer>
+        <Logo />
         <StyledOpenMenuButton onClick={() => {
           props.onClickMenu && props.onClickMenu();
         }}>
