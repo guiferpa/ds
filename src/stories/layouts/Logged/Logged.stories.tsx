@@ -2,11 +2,13 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import useState from 'storybook-addon-state';
 
-import Button from '../../../components/Button';
-import Divider from '../../../components/Divider';
-import UserProfileMenuSection from '../../../components/UserProfileMenuSection';
-import UserProfileMenuItem from '../../../components/UserProfileMenuItem';
-import Breadcrumb from '../../../components/Breadcrumb';
+import {
+  Button,
+  Breadcrumb,
+  Divider,
+  UserProfileMenuSection,
+  UserProfileMenuItem
+} from '../../../components';
 
 import LayoutLogged from './Logged';
 
@@ -61,10 +63,10 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
   return (
     <LayoutLogged {...args}>
       <Breadcrumb crumbs={[
-        { name: "Projects", path: "/#" },
-        { name: "Projects 2", path: "/#" }
+        { name: "Example 1", path: "/#" },
+        { name: "Example 2", path: "/#" }
       ]} />
-      <Button label="Example" onClick={() => console.log("Conseguiu clicar!!!")} />
+      <Button label="Sample" />
     </LayoutLogged>
   );
 };
