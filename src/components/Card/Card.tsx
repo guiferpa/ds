@@ -10,10 +10,12 @@ const cardResetStyle = (props: CardProps) => css`
 
 const cardBaseStyle = (props: CardProps) => css`
   border-radius: ${({ theme }) => theme.border.radius.sm};
-  max-width: 320px;
+  width: 320px;
   min-height: 380px;
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
+  box-sizing: border-box;
+  padding: ${({ theme }) => theme.spacing.inset.sm};
 `
 
 export const StyledCard = styled.div(
@@ -21,8 +23,12 @@ export const StyledCard = styled.div(
   cardBaseStyle
 );
 
-const Card: React.FunctionComponent<CardProps> = (props: CardProps) => {
-  return <StyledCard {...props} />;
+const Card: React.FunctionComponent<CardProps> = (props) => {
+  return (
+    <StyledCard>
+      {props.children}
+    </StyledCard>
+  );
 }
 
 export default Card;

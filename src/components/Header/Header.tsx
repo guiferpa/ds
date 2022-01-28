@@ -4,14 +4,23 @@ import { Menu, Close } from '@styled-icons/evaicons-solid';
 
 import UserProfile, { UserProfileProps } from '../UserProfile/UserProfile';
 
+import { Container } from '../layouts';
+
 import Logo from '../Logo';
 
 export interface HeaderProps {
   user: UserProfileProps;
   hasMenuOpened: boolean;
+  hasNotification?: boolean;
 
   onClickMenu?: () => void;
 }
+
+const StyledHeaderContainer = styled.header`
+  position: relative;
+  width: 100%;
+  background-color: ${({ theme }) => theme.brand.color.light.pure};
+`;
 
 const headerResetStyle = () => css`
   padding: 0;
@@ -28,19 +37,14 @@ const headerBaseStyle = () => css`
   width: 100%;
   height: 80px;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.brand.color.light.pure};
   padding: 0 ${({ theme }) => theme.spacing.size.lg};
-
-  @media screen and (max-width: 768px) {
-
-  }
 
   @media screen and (max-width: 415px) {
     padding: 0 ${({ theme }) => theme.spacing.size.sm};
   }
 `
 
-const StyledHeader = styled.header(
+const StyledHeader = styled.div(
   headerResetStyle,
   headerBaseStyle
 );
@@ -49,11 +53,6 @@ const StyledHeaderActionsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.size.md};
-`
-
-const StyledMenuIconClose = styled(Close)`
-  width: 25px;
-  height: 25px;
 `
 
 const StyledMenuIconOpen = styled(Menu)`
@@ -75,17 +74,21 @@ const StyledOpenMenuButton = styled.button`
 
 const Header: React.FunctionComponent<HeaderProps> = (props) => {
   return (
-    <StyledHeader>
-      <StyledHeaderActionsContainer>
-        <Logo />
-        <StyledOpenMenuButton onClick={() => {
-          props.onClickMenu && props.onClickMenu();
-        }}>
-          <StyledMenuIconOpen />
-        </StyledOpenMenuButton>
-      </StyledHeaderActionsContainer>
-      <UserProfile {...props.user} />
-    </StyledHeader>
+    <StyledHeaderContainer>
+      <Container>
+        <StyledHeader>
+            <StyledHeaderActionsContainer>
+              <Logo />
+              <StyledOpenMenuButton onClick={() => {
+                props.onClickMenu && props.onClickMenu();
+              }}>
+                <StyledMenuIconOpen />
+              </StyledOpenMenuButton>
+            </StyledHeaderActionsContainer>
+            <UserProfile {...props.user} hasNotification={props.hasNotification} />
+        </StyledHeader>
+      </Container>
+    </StyledHeaderContainer>
   );
 }
 

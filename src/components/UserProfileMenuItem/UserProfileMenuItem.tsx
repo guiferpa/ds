@@ -48,7 +48,7 @@ const StyledUserProfileMenuListItemLink = styled.a(
 const UserProfileMenuItem: React.FunctionComponent<UserProfileMenuItemProps> = (props) => {
   return (
     <StyledUserProfileMenuListItem>
-      <StyledUserProfileMenuListItemLink>
+      <StyledUserProfileMenuListItemLink href={props.href}>
         { props.label }
       </StyledUserProfileMenuListItemLink>
     </StyledUserProfileMenuListItem>

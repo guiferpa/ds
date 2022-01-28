@@ -11,8 +11,9 @@ const headingResetStyle = () => css`
 `
 
 const headingBaseStyle = () => css`
-  font-size: ${({ theme }) => theme.typography.size.md};
+  font-size: ${({ theme }) => theme.typography.size.xl};
   font-weight: ${({ theme }) => theme.brand.typography.weight.medium};
+  padding: ${({ theme }) => theme.spacing.size.md} 0;
 `
 
 const headingBoldStyle = (props: HeadingProps) => props.bold && css`

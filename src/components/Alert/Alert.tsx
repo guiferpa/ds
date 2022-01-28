@@ -20,6 +20,7 @@ const alertResetStyle = () => css`
 const alertBaseStyle = () => css`
   box-sizing: border-box;
   width: 100%;
+  min-height: 80px;
   font-size: ${({ theme }) => theme.typography.size.md};
   padding: ${({ theme }) => theme.spacing.inset.sm};
   border-style: solid;
@@ -29,6 +30,7 @@ const alertBaseStyle = () => css`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  box-sizing: border-box;
 `
   
   const alertDefaultStyle = () => css`
@@ -85,11 +87,7 @@ const alertCloseButtonResetStyle = () => css``
 const alertCloseButtonBaseStyle = () => css`
   color: ${({ theme }) => theme.brand.color.light.pure};
   border-radius: ${({ theme }) => theme.border.radius.xs};
-  width: 20px;
-
-  @media (max-width: 768px) {
-    width: 50px;
-  }
+  width: 23px;
 
   &:hover {
     cursor: pointer;

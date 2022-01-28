@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import styled from 'styled-components';
 import useState from 'storybook-addon-state';
 
 import {
@@ -7,12 +8,39 @@ import {
   Breadcrumb,
   Divider,
   UserProfileMenuSection,
-  UserProfileMenuItem
+  UserProfileMenuItem,
+  Toast,
+  Alert,
+  Modal,
+  Card
 } from '../..';
 
 import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
 
+import Container from '../Container';
+
 import LayoutLogged from './UserLogged';
+import Title from '../../Title';
+
+const StyledToastContainer = styled.div`
+  position: absolute;
+  right: 0;
+  z-index: 9;
+  box-sizing: border-box;
+  width: 300px;
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
+`
+
+const StyledAlertContainer = styled.div`
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  z-index: 10;
+`
 
 export default {
   title: 'Layouts/UserLogged',
@@ -24,7 +52,8 @@ export default {
           avatarURL: "",
           name: "Guilherme Paixão",
           role: "Tester"
-        }
+        },
+        hasNotification: true
       }
     }
   }
@@ -42,7 +71,11 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
           return (
             <>
               <UserProfileMenuSection title="Troca de perfil" items={[
-                { label: "Item 1", href: "/#" }
+                { label: "Item 1", href: "/#" },
+                { label: "Item 2", href: "/#" },
+                { label: "Item 3", href: "/#" },
+                { label: "Item 4", href: "/#" },
+                { label: "Item 5", href: "/#" }
               ]} />
               <Divider />
               <UserProfileMenuSection title="Configurações" items={[
@@ -68,13 +101,42 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
   });
 
   return (
-    <LayoutLogged {...args}>
-      <Breadcrumb crumbs={[
-        { name: "Example 1", path: "/#" },
-        { name: "Example 2", path: "/#" }
-      ]} />
-      <Button label="Sample" />
-    </LayoutLogged>
+    <>
+      {/**
+       * 
+      <>
+        <Modal title="It's a modal title" message="It's a modal message" />
+        <Modal title="It's a modal title 2" message="It's a modal message 2" />
+      </>
+       */}
+       {/**
+      <StyledAlertContainer>
+        <Alert message="It's a alert message" />
+      </StyledAlertContainer>
+        * 
+        */}
+      <LayoutLogged {...args}>
+        <Breadcrumb crumbs={[
+          { name: "Example 1", path: "/#" },
+          { name: "Example 2", path: "/#" }
+        ]} />
+        <Title>Projetos</Title>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(() => (
+            <Card>
+              <div style={{width: "100%", wordWrap: "break-word"}}>
+                <p>fsfsadfdfsdfasdfasdfasdfasdfsgdfgdfgsdfgsdfgsdfgsdfgsdflkgjsdflgsdkfghskldfhglksdfhglksdfhgklsdfhgksdljhfgklsdfhglksdhjfg</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+        {/*
+        <StyledToastContainer>
+          <Toast title='Test Title' message='Test Message' />
+        </StyledToastContainer>
+        */}
+      </LayoutLogged>
+    </>
   );
 };
 

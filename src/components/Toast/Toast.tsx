@@ -22,14 +22,11 @@ const toastBaseStyle = () => css`
   position: relative;
   padding: ${({ theme }) => theme.spacing.inset.md};
   border-radius: ${({ theme }) => theme.border.radius.sm};
-  width: 300px;
+  width: 100%;
   background-color: ${({ theme }) => theme.brand.color.light.pure};
   box-shadow: ${({ theme }) => theme.shadow.intensity.one} ${({ theme }) => theme.brand.color.light.medium};
   border: solid ${({ theme }) => theme.border.size.sm} ${({ theme }) => theme.brand.color.heavy.pure};
-
-  @media and (min-width: 375px) {
-    width: 100%;
-  }
+  box-sizing: border-box;
 `
 
 const toastSuccessStyle = (props: ToastProps) => props.success && css`

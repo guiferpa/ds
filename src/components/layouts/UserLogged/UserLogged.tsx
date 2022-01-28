@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Sidebar, { ItemProps as SidebarItemProps } from '../../Sidebar/Sidebar';
 import Header from '../../Header';
+import Container from '../Container';
 
 import { useWindowDimensions } from '../../../hooks/window';
 
@@ -25,6 +26,7 @@ export interface LoggedProps {
   header: {
     profile: {
       user: User;
+      hasNotification?: boolean;
       menu: () => React.ReactNode;
     }
   };
@@ -32,8 +34,8 @@ export interface LoggedProps {
 }
 
 export interface LoggedContainerProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
 }
 
 const StyledLoggedHeader = styled.div`
@@ -47,6 +49,7 @@ const StyledLoggedBody = styled.div`
   width: 100%;
   flex-basis: 100%;
   box-sizing: border-box;
+  overflow: auto;
 `
 
 const StyledLoggedBodyContent = styled.div`
@@ -54,6 +57,7 @@ const StyledLoggedBodyContent = styled.div`
   width: 100%:
   height: 100%;
   margin: ${({ theme }) => theme.spacing.inset.lg};
+  overflow: auto;
 
   @media screen and (max-width: 425px) {
     margin: ${({ theme }) => theme.spacing.inset.sm};
@@ -61,8 +65,8 @@ const StyledLoggedBodyContent = styled.div`
 `
 
 const StyledLoggedContainer = styled.div<LoggedContainerProps>`
-  width: ${(props) => props.width || "100vw"};
-  height: ${(props) => props.height || "100vh"};
+  width: ${(props) => props.width ? `${props.width}px` : "100vw"};
+  height: ${(props) => props.height ? `${props.height}px` : "100vh"};
   display: flex;
   flex-direction: column;
 `
@@ -79,13 +83,14 @@ const Logged: React.FunctionComponent<LoggedProps> = (props) => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   return (
-    <StyledLoggedContainer width={`${windowWidth}px`} height={`${windowHeight}px`}>
+    <StyledLoggedContainer width={windowWidth} height={windowHeight}>
       <StyledLoggedHeader>
         <Header
           user={{
             ...props.header.profile.user,
             renderMenu: props.header.profile.menu
           }}
+          hasNotification={props.header.profile.hasNotification}
           hasMenuOpened={!isMenuOpened}
           onClickMenu={() => onToggle && onToggle()}
         />
@@ -97,9 +102,11 @@ const Logged: React.FunctionComponent<LoggedProps> = (props) => {
           items={items} 
           onFold={() => onFold && onFold()}
         />
-        <StyledLoggedBodyContent>
-          {props.children}
-        </StyledLoggedBodyContent>
+        <Container>
+          <StyledLoggedBodyContent>
+            {props.children}
+          </StyledLoggedBodyContent>
+        </Container>
       </StyledLoggedBody>
     </StyledLoggedContainer>
   );

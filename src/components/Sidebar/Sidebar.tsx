@@ -22,15 +22,14 @@ const sidebarResetStyle = () => css``
 const sidebarBaseStyle = (props: { isFolded: boolean; isOpened: boolean; }) => css`
   display: flex;
   flex-direction: column;
-  position: absolute;
-  height: 100%;
-  top: 0;
+  position: fixed;
+  top: 80px;
   left: 0;
   width: ${ props.isOpened ? (!props.isFolded ? "290px" : "90px") : "0px" };
-  height: 100%;
+  height: calc(100% - 80px);
   transition: width 1s;
   background-color: ${({ theme }) => theme.brand.color.primary.pure};
-  z-index: 999;
+  z-index: 2;
 `
 
 const StyledSidebar = styled.nav(

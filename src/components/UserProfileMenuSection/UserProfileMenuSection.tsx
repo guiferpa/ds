@@ -40,8 +40,10 @@ const userProfileMenuSectionListResetStyle = () => css`
 const userProfileMenuSectionListBaseStyle = () => css`
   margin-top: ${({ theme }) => theme.spacing.size.xs};
   padding-left: ${({ theme }) => theme.spacing.size.xs};
+  max-height: 150px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 `;
 
 const StyledUserProfileMenuSectionList = styled.ul(

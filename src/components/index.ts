@@ -17,6 +17,7 @@ export { default as UserProfileMenuSection } from './UserProfileMenuSection';
 export { default as Divider } from './Divider';
 export { default as Modal } from './Modal';
 export { default as Alert } from './Alert';
+export { default as Title } from './Title';
 export * as Icon from './Icon';
 
 export * as Layout from './layouts';

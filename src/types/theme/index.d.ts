@@ -1,7 +1,5 @@
 import 'styled-components';
 
-import * as tokens from '../../tokens';
-
 declare module 'styled-components' {
   export interface DefaultTheme {
     brand: {
@@ -94,6 +92,7 @@ declare module 'styled-components' {
         sm: string;
         md: string;
         lg: string;
+        xl: string;
       }
     },
     shadow: {

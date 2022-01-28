@@ -10,6 +10,7 @@ export interface UserProfileProps {
   name: string;
   role: string;
   renderMenu?: () => React.ReactNode;
+  hasNotification?: boolean;
 }
 
 const userProfileContainerResetStyle = () => css``
@@ -101,7 +102,7 @@ const UserProfile: React.FunctionComponent<UserProfileProps> = (props) => {
 
   return (
     <StyledUserProfileContainer>
-      <Avatar src={props.avatarURL} />
+      <Avatar src={props.avatarURL} hasNotification={props.hasNotification} />
       <StyledUserProfileInfo>
         <StyledUserProfileInfoName>
           {props.name}
