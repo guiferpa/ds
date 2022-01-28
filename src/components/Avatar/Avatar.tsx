@@ -169,7 +169,7 @@ const StyledAvatarMask = styled.div(
 );
 
 const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
-  const inputImgEl = React.useRef(null);
+  const inputImgEl = React.useRef<HTMLInputElement>(null);
 
   const [image, setImage] = React.useState<File | null>(null);
   const [preview, setPreview] = React.useState<string>(props.src || "");

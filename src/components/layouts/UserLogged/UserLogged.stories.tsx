@@ -8,9 +8,11 @@ import {
   Divider,
   UserProfileMenuSection,
   UserProfileMenuItem
-} from '../../../components';
+} from '../..';
 
-import LayoutLogged from './Logged';
+import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
+
+import LayoutLogged from './UserLogged';
 
 export default {
   title: 'Layouts/Logged',
@@ -55,6 +57,11 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
     sidebar: {
       isOpened: isMenuOpened,
       isFolded: isMenuFolded,
+      items: [
+        { icon: FolderIcon, name: "Projetos", href: "/#" },
+        { icon: PersonIcon, name: "Perfil de usuário", href: "/#" },
+        { icon: LabIcon, name: "Experiências", href: "/#" }
+      ],
       onToggle: () => setIsMenuOpened(!isMenuOpened),
       onFold: () => setIsMenuFolded(!isMenuFolded)
     }

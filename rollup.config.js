@@ -1,9 +1,7 @@
+import ts from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import ts from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
-import url from '@rollup/plugin-url';
-import svgr from '@svgr/rollup';
 
 const pkg = require('./package.json');
 
@@ -14,30 +12,34 @@ const config = [
       {
         file: pkg.main,
         format: 'cjs',
-        sourceMap: true
+        sourcemap: true,
+        globals: { 'styled-components': 'styled' }
       },
       {
         file: pkg.module,
         format: 'esm',
-        sourceMap: true
-      }
+        sourcemap: true,
+        globals: { 'styled-components': 'styled' }
+      },
     ],
     plugins: [
       resolve(),
       commonjs(),
-      url(),
-      svgr({ typescript: true }),
-      ts({ tsconfig: './tsconfig.json' }),
+      ts({ tsconfig: "./tsconfig.json" })
     ],
-    external: ["react", "react-dom", "styled-components"],
-    globals: { 'styled-components': 'styled' }
+    external: ["react", "styled-components"]
   },
   {
     input: 'dist/esm/types/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
-    external: ["react", "react-dom", "styled-components"],
-    globals: { 'styled-components': 'styled' }
+    output: [
+      { 
+        file: 'dist/index.d.ts', 
+        format: 'esm' 
+      }
+    ],
+    plugins: [
+      dts()
+    ]
   }
 ];
 

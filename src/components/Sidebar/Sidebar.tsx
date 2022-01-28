@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
 import { Close } from '@styled-icons/evaicons-solid';
 
-export interface Item {
+export interface ItemProps {
   icon: React.ComponentType<any>;
   name: string;
   href?: string;
@@ -12,7 +12,7 @@ export interface Item {
 export interface SidebarProps {
   open?: boolean;
   fold?: boolean;
-  items: Item[];
+  items: ItemProps[];
 
   onFold?: () => void;
 }

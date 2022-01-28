@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Sidebar from '../../../components/Sidebar';
-import { FolderIcon, PersonIcon, LabIcon } from '../../../components/Icon';
-import Header from '../../../components/Header';
-import UserProfileMenuSection from '../../../components/UserProfileMenuSection';
-import UserProfileMenuItem from '../../../components/UserProfileMenuItem';
-import Divider from '../../../components/Divider';
+import Sidebar, { ItemProps as SidebarItemProps } from '../../Sidebar/Sidebar';
+import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
+import Header from '../../Header';
 
 import { useWindowDimensions } from '../../../hooks/window';
 
@@ -19,6 +16,7 @@ export interface User {
 export interface SidebarOptions {
   isOpened: boolean;
   isFolded: boolean;
+  items: SidebarItemProps[];
 
   onToggle?: () => void;
   onFold?: () => void;
@@ -74,6 +72,7 @@ const Logged: React.FunctionComponent<LoggedProps> = (props) => {
   const { 
     isOpened: isMenuOpened, 
     isFolded: isMenuFolded,
+    items,
 
     onFold, onToggle
   } = props.sidebar;
@@ -96,11 +95,7 @@ const Logged: React.FunctionComponent<LoggedProps> = (props) => {
         <Sidebar 
           open={isMenuOpened}
           fold={isMenuFolded}
-          items={[
-            { icon: FolderIcon, name: "Projetos", href: "/#" },
-            { icon: PersonIcon, name: "Perfil de usuário", href: "/#" },
-            { icon: LabIcon, name: "Experiências", href: "/#" }
-          ]} 
+          items={items} 
           onFold={() => onFold && onFold()}
         />
         <StyledLoggedBodyContent>
