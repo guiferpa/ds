@@ -15,7 +15,7 @@ import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
 import LayoutLogged from './UserLogged';
 
 export default {
-  title: 'Layouts/Logged',
+  title: 'Layouts/UserLogged',
   component: LayoutLogged,
   args: {
     header: {

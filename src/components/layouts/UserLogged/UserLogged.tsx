@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Sidebar, { ItemProps as SidebarItemProps } from '../../Sidebar/Sidebar';
-import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
 import Header from '../../Header';
 
 import { useWindowDimensions } from '../../../hooks/window';
