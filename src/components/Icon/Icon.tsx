@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { SpinnerIos } from '@styled-icons/fluentui-system-filled';
 import { Folder } from '@styled-icons/fa-solid';
-import { LabFlask } from '@styled-icons/entypo';
+import { LabFlask, ChevronSmallUp, ChevronSmallDown } from '@styled-icons/entypo';
 import { Person } from '@styled-icons/material';
 import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
 
@@ -69,3 +69,5 @@ export const LabIcon = generateStyledIcon(LabFlask);
 export const PersonIcon = generateStyledIcon(Person);
 export const MenuFoldIcon = generateStyledIcon(MenuFold);
 export const MenuUnfoldIcon = generateStyledIcon(MenuUnfold);
+export const ChevronUpIcon = generateStyledIcon(ChevronSmallUp);
+export const ChevronDownIcon = generateStyledIcon(ChevronSmallDown);

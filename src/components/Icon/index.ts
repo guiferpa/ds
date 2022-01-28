@@ -4,5 +4,7 @@ export {
   LabIcon,
   PersonIcon,
   MenuFoldIcon,
-  MenuUnfoldIcon
+  MenuUnfoldIcon,
+  ChevronUpIcon,
+  ChevronDownIcon
 } from './Icon';

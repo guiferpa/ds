@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import UserProfileMenuItem, { UserProfileMenuItemProps } from '../UserProfileMenuItem/UserProfileMenuItem';
+import UserProfileMenuItemWithBadge, { UserProfileMenuItemWithBadgeProps } from '../UserProfileMenuItemWithBadge/UserProfileMenuItemWithBadge';
 
 export interface UserProfileMenuSectionProps {
   title: string;
-  items: UserProfileMenuItemProps[];
+  items: UserProfileMenuItemWithBadgeProps[];
 }
 
 const userProfileMenuSectionResetStyle = () => css``
@@ -60,7 +60,7 @@ const UserProfileMenuSection: React.FunctionComponent<UserProfileMenuSectionProp
       <StyledUserProfileMenuSectionList>
         {props.items.map((propsItem, idx) => {
           return (
-            <UserProfileMenuItem {...propsItem} key={idx} />
+            <UserProfileMenuItemWithBadge {...propsItem} key={idx} />
           );
         })}
       </StyledUserProfileMenuSectionList>

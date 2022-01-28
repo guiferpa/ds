@@ -13,11 +13,12 @@ export { default as Header } from './Header';
 export { default as UserProfile } from './UserProfile';
 export { default as UserProfileMenu } from './UserProfileMenu';
 export { default as UserProfileMenuItem } from './UserProfileMenuItem';
+export { default as UserProfileMenuItemWithBadge } from './UserProfileMenuItemWithBadge';
 export { default as UserProfileMenuSection } from './UserProfileMenuSection';
 export { default as Divider } from './Divider';
 export { default as Modal } from './Modal';
 export { default as Alert } from './Alert';
 export { default as Title } from './Title';
+export { default as Accordion } from './Accordion';
 export * as Icon from './Icon';
-
 export * as Layout from './layouts';

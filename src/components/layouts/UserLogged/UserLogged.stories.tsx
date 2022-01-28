@@ -12,7 +12,8 @@ import {
   Toast,
   Alert,
   Modal,
-  Card
+  Card,
+  Accordion
 } from '../..';
 
 import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
@@ -79,7 +80,8 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
               ]} />
               <Divider />
               <UserProfileMenuSection title="Configurações" items={[
-                { label: "Item 2", href: "/#" }
+                { label: "Item 2", href: "/#" },
+                { label: "Item 2", href: "/#", badge: "1" }
               ]} />
               <UserProfileMenuItem label='Item 3' href='/#' />
             </>
@@ -122,12 +124,10 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
         ]} />
         <Title>Projetos</Title>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(() => (
-            <Card>
-              <div style={{width: "100%", wordWrap: "break-word"}}>
-                <p>fsfsadfdfsdfasdfasdfasdfasdfsgdfgdfgsdfgsdfgsdfgsdfgsdflkgjsdflgsdkfghskldfhglksdfhglksdfhgklsdfhgksdljhfgklsdfhglksdhjfg</p>
-              </div>
-            </Card>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((item) => (
+            <Accordion title={`Accordion example ${item}`} isOpened>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero libero facere repellat. Iure quam voluptate sed aliquid blanditiis itaque ullam vitae consectetur reiciendis earum qui, molestias, sint impedit explicabo assumenda.</p>
+            </Accordion>
           ))}
         </div>
         {/*
