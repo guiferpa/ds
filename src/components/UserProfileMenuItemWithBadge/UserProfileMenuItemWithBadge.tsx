@@ -5,6 +5,8 @@ export interface UserProfileMenuItemWithBadgeProps {
   label: string;
   href: string;
   badge?: string;
+  activated?: boolean;
+  danger?: boolean;
 }
 
 const userProfileMenuSectionListItemResetStyle = () => css`
@@ -21,6 +23,11 @@ const StyledUserProfileMenuListItem = styled.li(
   userProfileMenuSectionListItemResetStyle,
   userProfileMenuSectionListItemBaseStyle
 );
+
+interface UserProfileMenuItemLinkWithBadgeProps {
+  activated?: boolean;
+  danger?: boolean;
+}
 
 const userProfileMenuListItemLinkResetStyle = () => css`
   text-decoration: none;
@@ -43,9 +50,20 @@ const userProfileMenuListItemLinkBaseStyle = () => css`
   }
 `
 
+const userProfileMenuListItemLinkActivatedStyle = (props: UserProfileMenuItemLinkWithBadgeProps) => props.activated && css`
+  color: ${({ theme }) => theme.brand.color.primary.pure};
+  font-weight: ${({ theme }) => theme.brand.typography.weight.bold};
+`
+
+const userProfileMenuListItemLinkDangerStyle = (props: UserProfileMenuItemLinkWithBadgeProps) => props.danger && css`
+  color: ${({ theme }) => theme.brand.color.tertiary.pure};
+`
+
 const StyledUserProfileMenuListItemLink = styled.a(
   userProfileMenuListItemLinkResetStyle,
-  userProfileMenuListItemLinkBaseStyle
+  userProfileMenuListItemLinkBaseStyle,
+  userProfileMenuListItemLinkActivatedStyle,
+  userProfileMenuListItemLinkDangerStyle
 );
 
 const StyledBadge = styled.span`
@@ -56,10 +74,14 @@ const StyledBadge = styled.span`
   border-radius: ${({ theme }) => theme.border.radius.sm};
 `
 
-const UserProfileMenuItem: React.FunctionComponent<UserProfileMenuItemWithBadgeProps> = (props) => {
+const UserProfileMenuItemWithBadge: React.FunctionComponent<UserProfileMenuItemWithBadgeProps> = (props) => {
   return (
     <StyledUserProfileMenuListItem>
-      <StyledUserProfileMenuListItemLink href={props.href}>
+      <StyledUserProfileMenuListItemLink 
+        href={props.href} 
+        activated={props.activated}
+        danger={props.danger}
+      >
         <span>{ props.label }</span>
         {props.badge && <StyledBadge>{props.badge}</StyledBadge>}
       </StyledUserProfileMenuListItemLink>
@@ -67,4 +89,4 @@ const UserProfileMenuItem: React.FunctionComponent<UserProfileMenuItemWithBadgeP
   );
 }
 
-export default UserProfileMenuItem;
+export default UserProfileMenuItemWithBadge;

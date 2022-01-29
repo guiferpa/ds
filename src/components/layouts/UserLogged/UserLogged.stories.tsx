@@ -13,12 +13,11 @@ import {
   Alert,
   Modal,
   Card,
-  Accordion
+  Accordion,
+  UserProfileMenuItemWithBadge
 } from '../..';
 
 import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
-
-import Container from '../Container';
 
 import LayoutLogged from './UserLogged';
 import Title from '../../Title';
@@ -73,7 +72,7 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
             <>
               <UserProfileMenuSection title="Troca de perfil" items={[
                 { label: "Item 1", href: "/#" },
-                { label: "Item 2", href: "/#" },
+                { label: "Item 2", href: "/#", activated: true },
                 { label: "Item 3", href: "/#" },
                 { label: "Item 4", href: "/#" },
                 { label: "Item 5", href: "/#" }
@@ -83,7 +82,7 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
                 { label: "Item 2", href: "/#" },
                 { label: "Item 2", href: "/#", badge: "1" }
               ]} />
-              <UserProfileMenuItem label='Item 3' href='/#' />
+              <UserProfileMenuItemWithBadge label='Item 3' href='/#' danger />
             </>
           );
         }

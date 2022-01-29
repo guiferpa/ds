@@ -8,7 +8,7 @@ const cardResetStyle = (props: CardProps) => css`
   margin: 0;
 `
 
-const cardBaseStyle = (props: CardProps) => css`
+const cardBaseStyle = () => css`
   border-radius: ${({ theme }) => theme.border.radius.sm};
   width: 320px;
   min-height: 380px;
