@@ -41,6 +41,7 @@ declare module 'styled-components' {
           },
           failure: {
             pure: string;
+            light: string;
             dark: string;
           },
           success: {

@@ -1,12 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import moment from 'moment';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   fluid?: boolean;
   label?: string;
+  onValidate?: (err: Error, ref: React.MutableRefObject<HTMLInputElement>) => void;
+  isRequired?: boolean
 }
 
-const inputResetStyle = (props: InputProps) => css`
+const inputResetStyle = () => css`
   border: none;
   margin: 0;
 `
@@ -73,18 +76,13 @@ const mask = (value: string): string[] => {
   return digitsMasked;
 }
 
-const Input: React.FunctionComponent<InputProps> = (props: InputProps) => {
-  const [value, setValue] = React.useState<string>(props.defaultValue as string || "");
-
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <StyledInputWrapper fluid={props.fluid}>
       {props.label && <StyledInputLabel> {props.label} </StyledInputLabel>}
-      <StyledInput {...props} placeholder='__/__/____' value={value} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(mask(evt.target.value).join(""));
-        props.onChange && props.onChange(evt);
-      }} />
+      <StyledInput {...props} ref={ref} placeholder='__/__/____' />
     </StyledInputWrapper>
   );
-}
+});
 
 export default Input;

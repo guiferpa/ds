@@ -9,7 +9,7 @@ export default {
   args: {}
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = (args) => <Input {...args} isRequired onValidate={(err: Error) => { console.log("Error:", err) }} />;
 
 export const Simple = Template.bind({});
 Simple.args = {};

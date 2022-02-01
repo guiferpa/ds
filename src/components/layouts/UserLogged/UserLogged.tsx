@@ -54,10 +54,9 @@ const StyledLoggedBody = styled.div`
 
 const StyledLoggedBodyContent = styled.div`
   position: relative;
-  width: 100%:
-  height: 100%;
   margin: ${({ theme }) => theme.spacing.inset.lg};
   overflow: auto;
+  box-sizing: border-box;
 
   @media screen and (max-width: 425px) {
     margin: ${({ theme }) => theme.spacing.inset.sm};

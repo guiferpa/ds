@@ -56,13 +56,13 @@ const StyledInputWrapper = styled.div(
   inputWrapperFluidStyle
 )
 
-const Input: React.FunctionComponent<InputProps> = (props: InputProps) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <StyledInputWrapper fluid={props.fluid}>
       {props.label && <StyledInputLabel> {props.label} </StyledInputLabel>}
-      <StyledInput {...props} />
+      <StyledInput {...props} ref={ref} />
     </StyledInputWrapper>
   );
-}
+});
 
 export default Input;

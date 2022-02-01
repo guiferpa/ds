@@ -3,12 +3,21 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Button from './Button';
 
+import * as Icon from '../Icon';
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/Button',
   component: Button,
   args: {
-    label: 'Button'
+    label: 'Button',
+    secondary: false,
+    tertiary: false,
+    fluid: false,
+    isLoading: false,
+    disabled: false,
+    dashed: false,
+    danger: false
   }
 } as ComponentMeta<typeof Button>;
 
@@ -40,4 +49,23 @@ Loading.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  icon: Icon.FolderIcon
+};
+
+export const Dashed = Template.bind({});
+Dashed.args = {
+  icon: Icon.TrashIcon,
+  secondary: true,
+  dashed: true
+};
+
+export const Danger = Template.bind({});
+Danger.args = {
+  icon: Icon.TrashIcon,
+  secondary: true,
+  danger: true
 };

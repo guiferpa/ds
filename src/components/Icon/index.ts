@@ -6,5 +6,10 @@ export {
   MenuFoldIcon,
   MenuUnfoldIcon,
   ChevronUpIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  PersonAddIcon,
+  PlusIcon,
+  TrashIcon,
+  PerncilIcon,
+  AssignmentIcon
 } from './Icon';

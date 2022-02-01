@@ -2,9 +2,9 @@ export default {
   color: {
     primary: {
       pure: '#06579b',
-      light: '#04457c',
-      medium: '#03345d',
-      dark: '#02223e'
+      light: '#92cbfb',
+      medium: '#076cc1',
+      dark: '#054275'
     },
     secondary: {
       pure: '#feca05',
@@ -28,9 +28,9 @@ export default {
       },
       failure: {
         pure: '#c1172f',
-        light: '#9a1225',
-        medium: '#730d1c',
-        dark: '#4d0912'
+        light: '#ec6175',
+        medium: '#e41b38',
+        dark: '#9e1326'
       },
       warning: {
         pure: '#de6b17',

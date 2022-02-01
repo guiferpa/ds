@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Menu, Close } from '@styled-icons/evaicons-solid';
+import { Menu } from '@styled-icons/evaicons-solid';
 
 import UserProfile, { UserProfileProps } from '../UserProfile/UserProfile';
 
-import { Container } from '../layouts';
+import Container from '../layouts/Container';
 
 import Logo from '../Logo';
 

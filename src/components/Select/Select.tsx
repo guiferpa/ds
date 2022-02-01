@@ -1,17 +1,53 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { ChevronSmallUp, ChevronSmallDown } from '@styled-icons/entypo';
+import ReactSelect, {
+  components,
+  IndicatorSeparatorProps, 
+  DropdownIndicatorProps, 
+  Options
+} from 'react-select';
 
-export interface Option {
-  label: string;
-  value: string;
-  selected: boolean;
+import styles from './style';
+import theme from './theme';
+
+import * as Icon from '../Icon';
+
+export interface SelectProps {
+  label?: string;
+  multi?: boolean;
+  fluid?: boolean;
+  placeholder?: string;
+  noOptionsMessage?: string;
+  options: Options<any>;
+  onChange?: (value: any) => void;
+  value?: string;
+  defaultValue?: string;
 }
 
-export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  fluid?: boolean;
-  label?: string;
-  options: Option[];
+const IndicatorSeparator = (props: IndicatorSeparatorProps) => {
+  return (
+    <></>
+  );
+}
+
+const DropdownIndicator = (props: DropdownIndicatorProps) => {
+  return (
+    <components.IndicatorsContainer {...props}>
+      {props.selectProps.menuIsOpen ? (
+        <Icon.ChevronUpIcon />
+      ) : (
+        <Icon.ChevronDownIcon />
+      )}
+    </components.IndicatorsContainer>
+  );
+}
+
+const generateNoOptionsMessage = (message?: string) => (props) => {
+  return (
+    <components.NoOptionsMessage {...props}>
+      {message}
+    </components.NoOptionsMessage>
+  );
 }
 
 interface SelectWrapperProps {
@@ -19,7 +55,6 @@ interface SelectWrapperProps {
 }
 
 const selectWrapperBaseStyle = () => css`
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -34,90 +69,31 @@ const StyledSelectWrapper = styled.div(
   selectWrapperFluidStyle
 );
 
-const selectResetStyle = () => css`
-  border: none;
-  margin: 0;
-`
-
-const selectBaseStyle = () => css`
-  position: relative;
-  background-color: ${({ theme }) => theme.brand.color.light.pure};
-  border-width: ${({ theme }) => theme.border.size.sm};
-  border-style: solid;
-  border-color: ${({ theme }) => theme.brand.color.light.dark};
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  padding: ${({ theme }) => theme.spacing.inset.sm};
-  font-size: ${({ theme }) => theme.typography.size.md};
-  min-width: 200px;
-  box-sizing: border-box;
-  appearence: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 100%;
-
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.brand.color.primary.pure};
-  }
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.brand.color.light.light};
-  }
-`
-
-const StyledSelect = styled.select(
-  selectResetStyle,
-  selectBaseStyle
-);
-
-const StyledSelectLabel = styled.label`
+const StyledInputLabel = styled.label`
   margin-bottom: ${({ theme }) => theme.spacing.size.xs};
 `
 
-const selectIconWrapperBaseStyle = () => css`
-  position: relative;
-`
-
-const StyledSelectIconWrapper = styled.div(
-  selectIconWrapperBaseStyle
-);
-
-const StyledSelectIconGroup = styled.span`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 20px;
-  width: 20px;
-  height: 24px;
-  display: flex;
-  flex-direction: column;
-`
-
-const selectIconBaseStyle = () => css``
-
-const StyledSelectIconUp = styled(ChevronSmallUp)(selectIconBaseStyle);
-
-const StyledSelectIconDown = styled(ChevronSmallDown)(selectIconBaseStyle);
-
-const Input: React.FunctionComponent<SelectProps> = (props: SelectProps) => {
+const Select: React.FunctionComponent<SelectProps> = (props) => {
   return (
     <StyledSelectWrapper fluid={props.fluid}>
-      {props.label && <StyledSelectLabel> {props.label} </StyledSelectLabel>}
-      <StyledSelectIconWrapper>
-        <StyledSelect {...props}>
-          {props.options.map((opt: Option) => {
-            const { label, ...rest } = opt;
-            return <option {...rest}>{ label }</option>;
-          })}
-        </StyledSelect>
-        <StyledSelectIconGroup>
-          <StyledSelectIconUp />
-          <StyledSelectIconDown />
-        </StyledSelectIconGroup>
-      </StyledSelectIconWrapper>
+      {props.label && <StyledInputLabel> {props.label} </StyledInputLabel>}
+      <ReactSelect
+        components={{ 
+          IndicatorSeparator, 
+          DropdownIndicator,
+          NoOptionsMessage: generateNoOptionsMessage(props.noOptionsMessage)
+        }}
+        options={props.options}
+        value={props.value}
+        defaultValue={props.defaultValue}
+        theme={theme}
+        styles={styles}
+        isMulti={props.multi}
+        placeholder={props.placeholder}
+        onChange={(value) => { props.onChange && props.onChange(value) }}
+      />
     </StyledSelectWrapper>
   );
 }
 
-export default Input;
+export default Select;

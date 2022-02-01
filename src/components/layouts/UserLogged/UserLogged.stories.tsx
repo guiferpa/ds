@@ -14,7 +14,8 @@ import {
   Modal,
   Card,
   Accordion,
-  UserProfileMenuItemWithBadge
+  UserProfileMenuItemWithBadge,
+  Icon
 } from '../..';
 
 import { FolderIcon, PersonIcon, LabIcon } from '../../Icon';
@@ -70,12 +71,13 @@ const Template: ComponentStory<typeof LayoutLogged> = (args) => {
         menu: () => {
           return (
             <>
+              <UserProfileMenuItemWithBadge label='Item 3' href='/#' icon={Icon.PersonAddIcon} />
               <UserProfileMenuSection title="Troca de perfil" items={[
                 { label: "Item 1", href: "/#" },
                 { label: "Item 2", href: "/#", activated: true },
                 { label: "Item 3", href: "/#" },
                 { label: "Item 4", href: "/#" },
-                { label: "Item 5", href: "/#" }
+                { icon: Icon.PersonAddIcon, label: "Item 5", href: "/#" }
               ]} />
               <Divider />
               <UserProfileMenuSection title="Configurações" items={[

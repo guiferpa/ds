@@ -7,6 +7,7 @@ export interface UserProfileMenuItemWithBadgeProps {
   badge?: string;
   activated?: boolean;
   danger?: boolean;
+  icon?: React.ComponentType<any>;
 }
 
 const userProfileMenuSectionListItemResetStyle = () => css`
@@ -74,7 +75,17 @@ const StyledBadge = styled.span`
   border-radius: ${({ theme }) => theme.border.radius.sm};
 `
 
+const StyledIconWrapper = styled.span``
+
+const StyledLabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.size.xs};
+`
+
 const UserProfileMenuItemWithBadge: React.FunctionComponent<UserProfileMenuItemWithBadgeProps> = (props) => {
+  const { icon: Icon } = props;
+
   return (
     <StyledUserProfileMenuListItem>
       <StyledUserProfileMenuListItemLink 
@@ -82,7 +93,14 @@ const UserProfileMenuItemWithBadge: React.FunctionComponent<UserProfileMenuItemW
         activated={props.activated}
         danger={props.danger}
       >
-        <span>{ props.label }</span>
+        <StyledLabelWrapper>
+          {Icon && (
+            <StyledIconWrapper>
+              <Icon />
+            </StyledIconWrapper>
+          )}
+          { props.label }
+        </StyledLabelWrapper>
         {props.badge && <StyledBadge>{props.badge}</StyledBadge>}
       </StyledUserProfileMenuListItemLink>
     </StyledUserProfileMenuListItem>

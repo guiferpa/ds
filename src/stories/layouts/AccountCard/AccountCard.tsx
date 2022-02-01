@@ -81,15 +81,4 @@ const AccountCard: React.FunctionComponent<AccountCardProps> = (props) => {
   );
 }
 
-/*
- - Apelido
- - Nome completo
- - CEP
- - Telefone
- - Gênero
- - Nível de escolaridade
- - Reside em comunidade?
- - É refugiado?
-*/
-
 export default AccountCard;

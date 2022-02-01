@@ -3,8 +3,10 @@ import styled, { css, keyframes } from 'styled-components';
 import { SpinnerIos } from '@styled-icons/fluentui-system-filled';
 import { Folder } from '@styled-icons/fa-solid';
 import { LabFlask, ChevronSmallUp, ChevronSmallDown } from '@styled-icons/entypo';
-import { Person } from '@styled-icons/material';
+import { Person, PersonAddAlt1, AssignmentInd } from '@styled-icons/material';
 import { MenuFold, MenuUnfold } from '@styled-icons/remix-line';
+import { Plus, Trash2 } from '@styled-icons/evaicons-solid';
+import { Edit } from '@styled-icons/material-rounded';
 
 export interface IconProps {
   loop?: boolean;
@@ -71,3 +73,8 @@ export const MenuFoldIcon = generateStyledIcon(MenuFold);
 export const MenuUnfoldIcon = generateStyledIcon(MenuUnfold);
 export const ChevronUpIcon = generateStyledIcon(ChevronSmallUp);
 export const ChevronDownIcon = generateStyledIcon(ChevronSmallDown);
+export const PersonAddIcon = generateStyledIcon(PersonAddAlt1);
+export const PlusIcon = generateStyledIcon(Plus);
+export const TrashIcon = generateStyledIcon(Trash2);
+export const PerncilIcon = generateStyledIcon(Edit);
+export const AssignmentIcon = generateStyledIcon(AssignmentInd);
